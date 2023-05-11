@@ -9,6 +9,11 @@ use Usarise\Identicon\ImageDriver\GdDriver;
 use Usarise\Identicon\{Identicon, Resolution};
 
 final class GdDriverTest extends TestCase {
+    /**
+     * @var int
+     */
+    private const IMAGE_SIZE = 120;
+
     protected function setUp(): void {
         if (!\extension_loaded('gd')) {
             $this->markTestSkipped(
@@ -20,6 +25,7 @@ final class GdDriverTest extends TestCase {
     public function testImageDriverLoad(): void {
         $identicon = new Identicon(
             new GdDriver(),
+            self::IMAGE_SIZE,
         );
 
         $this->assertInstanceOf(
@@ -33,6 +39,7 @@ final class GdDriverTest extends TestCase {
 
         $identicon = new Identicon(
             new GdDriver(),
+            self::IMAGE_SIZE,
         );
 
         $this->assertEquals(
@@ -46,10 +53,11 @@ final class GdDriverTest extends TestCase {
     public function testImageDefault(): void {
         $identicon = new Identicon(
             new GdDriver(),
+            self::IMAGE_SIZE,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/test.gd.png'),
+            file_get_contents(__DIR__ . '/fixtures/default/test.gd.png'),
             $identicon->generate('test'),
         );
     }
@@ -57,10 +65,11 @@ final class GdDriverTest extends TestCase {
     public function testImageBackground(): void {
         $identicon = new Identicon(
             new GdDriver(),
+            self::IMAGE_SIZE,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/test.background.gd.png'),
+            file_get_contents(__DIR__ . '/fixtures/color/test.background.gd.png'),
             $identicon->generate(
                 'test',
                 '#f2f1f2',
@@ -71,10 +80,11 @@ final class GdDriverTest extends TestCase {
     public function testImageFill(): void {
         $identicon = new Identicon(
             new GdDriver(),
+            self::IMAGE_SIZE,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/test.fill.gd.png'),
+            file_get_contents(__DIR__ . '/fixtures/color/test.fill.gd.png'),
             $identicon->generate(
                 'test',
                 null,
@@ -86,10 +96,11 @@ final class GdDriverTest extends TestCase {
     public function testImageBackgroundFill(): void {
         $identicon = new Identicon(
             new GdDriver(),
+            self::IMAGE_SIZE,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/test.background.fill.gd.png'),
+            file_get_contents(__DIR__ . '/fixtures/color/test.background.fill.gd.png'),
             $identicon->generate(
                 'test',
                 '#f2f1f2',
@@ -100,8 +111,9 @@ final class GdDriverTest extends TestCase {
 
     public function testImageResolutionTiny(): void {
         $identicon = new Identicon(
-            new GdDriver(),
-            Resolution::Tiny,
+            image: new GdDriver(),
+            size: self::IMAGE_SIZE,
+            resolution: Resolution::Tiny,
         );
 
         $this->assertEquals(
@@ -112,8 +124,9 @@ final class GdDriverTest extends TestCase {
 
     public function testImageResolutionSmall(): void {
         $identicon = new Identicon(
-            new GdDriver(),
-            Resolution::Small,
+            image: new GdDriver(),
+            size: self::IMAGE_SIZE,
+            resolution: Resolution::Small,
         );
 
         $this->assertEquals(
@@ -124,8 +137,9 @@ final class GdDriverTest extends TestCase {
 
     public function testImageResolutionMedium(): void {
         $identicon = new Identicon(
-            new GdDriver(),
-            Resolution::Medium,
+            image: new GdDriver(),
+            size: self::IMAGE_SIZE,
+            resolution: Resolution::Medium,
         );
 
         $this->assertEquals(
@@ -136,8 +150,9 @@ final class GdDriverTest extends TestCase {
 
     public function testImageResolutionLarge(): void {
         $identicon = new Identicon(
-            new GdDriver(),
-            Resolution::Large,
+            image: new GdDriver(),
+            size: 126,
+            resolution: Resolution::Large,
         );
 
         $this->assertEquals(
@@ -148,8 +163,9 @@ final class GdDriverTest extends TestCase {
 
     public function testImageResolutionHuge(): void {
         $identicon = new Identicon(
-            new GdDriver(),
-            Resolution::Huge,
+            image: new GdDriver(),
+            size: 128,
+            resolution: Resolution::Huge,
         );
 
         $this->assertEquals(

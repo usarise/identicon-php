@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Usarise\Identicon\ImageDriver;
 
-use Usarise\Identicon\Identicon;
-
 final class ImagickDriver implements ImageDriverInterface {
+    private int $size;
     private \ImagickDraw $image;
     private \ImagickPixel $background;
 
-    public function draw(string $background, string $fill): self {
+    public function draw(int $size, string $background, string $fill): self {
         $image = new \ImagickDraw();
 
         $image->setFillColor(
             new \ImagickPixel($fill),
         );
 
+        $this->size = $size;
         $this->image = $image;
         $this->background = new \ImagickPixel($background);
 
@@ -31,8 +31,8 @@ final class ImagickDriver implements ImageDriverInterface {
         $imagick = new \Imagick();
 
         $imagick->newImage(
-            Identicon::IMAGE_SIZE,
-            Identicon::IMAGE_SIZE,
+            $this->size,
+            $this->size,
             $this->background,
         );
 

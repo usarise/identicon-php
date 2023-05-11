@@ -10,18 +10,10 @@ use Usarise\Identicon\{Binary, Identicon, Resolution};
 use Usarise\IdenticonTests\ImageDriver\CustomDriver;
 
 final class IdenticonTest extends TestCase {
-    public function testImageSizeDefault(): void {
-        $this->assertEquals(
-            420,
-            Identicon::IMAGE_SIZE,
-        );
-    }
-
-    public function testImageSizeValid(): void {
-        $this->assertTrue(
-            Identicon::IMAGE_SIZE % 2 === 0,
-        );
-    }
+    /**
+     * @var int
+     */
+    private const IMAGE_SIZE = 420;
 
     public function testImageBackgroundDefault(): void {
         $this->assertEquals(
@@ -31,7 +23,10 @@ final class IdenticonTest extends TestCase {
     }
 
     public function testCustomDriver(): void {
-        $identicon = new Identicon(new CustomDriver());
+        $identicon = new Identicon(
+            new CustomDriver(),
+            self::IMAGE_SIZE,
+        );
 
         $this->assertInstanceOf(
             CustomDriver::class,
@@ -39,8 +34,52 @@ final class IdenticonTest extends TestCase {
         );
     }
 
+    public function testSize(): void {
+        $identicon = new Identicon(
+            new CustomDriver(),
+            self::IMAGE_SIZE,
+        );
+
+        $this->assertEquals(
+            self::IMAGE_SIZE,
+            $identicon->size,
+        );
+
+        $identicon = new Identicon(
+            image: new CustomDriver(),
+            size: 120,
+        );
+
+        $this->assertEquals(
+            120,
+            $identicon->size,
+        );
+    }
+
+    public function testBadSize(): void {
+        $this->expectException(InvalidArgumentException::class);
+
+        new Identicon(
+            image: new CustomDriver(),
+            size: 121,
+        );
+    }
+
+    public function testBadSizeResolution(): void {
+        $this->expectException(InvalidArgumentException::class);
+
+        new Identicon(
+            image: new CustomDriver(),
+            size: self::IMAGE_SIZE,
+            resolution: Resolution::Tiny,
+        );
+    }
+
     public function testResolution(): void {
-        $identicon = new Identicon(new CustomDriver());
+        $identicon = new Identicon(
+            new CustomDriver(),
+            self::IMAGE_SIZE,
+        );
 
         $this->assertEquals(
             12,
@@ -48,19 +87,26 @@ final class IdenticonTest extends TestCase {
         );
 
         $identicon = new Identicon(
-            new CustomDriver(),
-            Resolution::Small,
+            image: new CustomDriver(),
+            size: 128,
+            resolution: Resolution::Huge,
         );
 
         $this->assertEquals(
-            10,
+            16,
             $identicon->resolution->value,
         );
     }
 
     public function testFillColor(): void {
-        $identicon = new Identicon(new CustomDriver());
-        $binary = new Binary(Resolution::Medium);
+        $identicon = new Identicon(
+            new CustomDriver(),
+            self::IMAGE_SIZE,
+        );
+
+        $binary = new Binary(
+            $identicon->resolution,
+        );
 
         $this->assertEquals(
             '#55c878',
@@ -75,11 +121,12 @@ final class IdenticonTest extends TestCase {
 
         $identicon = new Identicon(
             new CustomDriver(),
+            self::IMAGE_SIZE,
         );
 
         $identicon->generate(
-            'test',
-            'invalid',
+            str: 'test',
+            background: 'invalid',
         );
     }
 
@@ -88,17 +135,20 @@ final class IdenticonTest extends TestCase {
 
         $identicon = new Identicon(
             new CustomDriver(),
+            self::IMAGE_SIZE,
         );
 
         $identicon->generate(
-            'test',
-            null,
-            'invalid',
+            str: 'test',
+            fill: 'invalid',
         );
     }
 
     public function testHexColorValidation(): void {
-        $identicon = new Identicon(new CustomDriver());
+        $identicon = new Identicon(
+            new CustomDriver(),
+            self::IMAGE_SIZE,
+        );
 
         $this->assertTrue(
             $identicon->hexColorValidation('#F0F0F0'),
@@ -110,7 +160,10 @@ final class IdenticonTest extends TestCase {
     }
 
     public function testHexColorValidationFalse(): void {
-        $identicon = new Identicon(new CustomDriver());
+        $identicon = new Identicon(
+            new CustomDriver(),
+            self::IMAGE_SIZE,
+        );
 
         $this->assertFalse(
             $identicon->hexColorValidation('#000'),

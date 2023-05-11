@@ -16,16 +16,18 @@ composer require usarise/identicon
 ```php
 <?php
 
+declare(strict_types=1);
+
 require_once __DIR__ . '/vendor/autoload.php';
 
 use Usarise\Identicon\Identicon;
-use Usarise\Identicon\ImageDriver\{GdDriver, ImagickDriver};
-
-header('Content-type: image/png');
+use Usarise\Identicon\ImageDriver\GdDriver;
 
 $identicon = new Identicon(
-    new GdDriver(), // or new ImagickDriver()
+    new GdDriver(),
+    420,
 );
 
+header('Content-type: image/png');
 echo $identicon->generate('test');
 ```

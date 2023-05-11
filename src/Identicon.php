@@ -9,18 +9,25 @@ use Usarise\Identicon\ImageDriver\ImageDriverInterface;
 
 final class Identicon {
     /**
-     * @var int
-     */
-    public const IMAGE_SIZE = 420;
-    /**
      * @var string
      */
     public const IMAGE_BACKGROUND = '#F0F0F0';
 
     public function __construct(
         public readonly ImageDriverInterface $image,
+        public readonly int $size,
         public readonly Resolution $resolution = Resolution::Medium,
     ) {
+        $resolutionValue = $this->resolution->value;
+
+        if (($size % $resolutionValue) !== 0) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'Size must be a multiple of %d',
+                    $resolutionValue,
+                ),
+            );
+        }
     }
 
     /**
@@ -56,21 +63,23 @@ final class Identicon {
             throw new InvalidArgumentException('Invalid fill format');
         }
 
+        $size = $this->size;
         $binary = new Binary($this->resolution);
         $bytes = $binary->getBytes($str);
 
-        $blockSize = floor(self::IMAGE_SIZE / $this->resolution->value);
+        $blockSize = floor($size / $this->resolution->value);
         $pixels = $binary->getPixels(
             $binary->getBinStr($bytes),
         );
 
         $draw = $this->image->draw(
+            $size,
             $background ?? self::IMAGE_BACKGROUND,
             $fill ?? $this->getFillColor($bytes),
         );
 
-        foreach (range(0, self::IMAGE_SIZE) as $x) {
-            foreach (range(0, self::IMAGE_SIZE) as $y) {
+        foreach (range(0, $size) as $x) {
+            foreach (range(0, $size) as $y) {
                 $xBlockSize = (int) floor($x / $blockSize);
                 $yBlockSize = (int) floor($y / $blockSize);
 

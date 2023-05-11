@@ -4,19 +4,23 @@ declare(strict_types=1);
 
 namespace Usarise\Identicon\ImageDriver;
 
-use Usarise\Identicon\Identicon;
-
 final class GdDriver implements ImageDriverInterface {
+    private int $color;
     private \GdImage $image;
-    private int $fill;
 
-    public function draw(string $background, string $fill): self {
-        $size = Identicon::IMAGE_SIZE;
-        $image = imagecreate($size, $size);
+    public function draw(int $size, string $background, string $fill): self {
+        $image = imagecreate(
+            $size,
+            $size,
+        );
 
-        $fill = sscanf($fill, '#%02x%02x%02x');
-        $fill = imagecolorallocate($image, ...$fill);
-        $background = sscanf($background, '#%02x%02x%02x');
+        $this->color = imagecolorallocate(
+            $image,
+            ...sscanf(
+                $fill,
+                '#%02x%02x%02x',
+            ),
+        );
 
         imagefill(
             image: $image,
@@ -24,12 +28,14 @@ final class GdDriver implements ImageDriverInterface {
             y: 0,
             color: imagecolorallocate(
                 $image,
-                ...$background,
+                ...sscanf(
+                    $background,
+                    '#%02x%02x%02x',
+                ),
             ),
         );
 
         $this->image = $image;
-        $this->fill = $fill;
 
         return $this;
     }
@@ -39,7 +45,7 @@ final class GdDriver implements ImageDriverInterface {
             $this->image,
             $x,
             $y,
-            $this->fill,
+            $this->color,
         );
     }
 
