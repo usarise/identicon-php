@@ -6,7 +6,7 @@ namespace Usarise\IdenticonTests;
 
 use PHPUnit\Framework\TestCase;
 use Usarise\Identicon\Exception\InvalidArgumentException;
-use Usarise\Identicon\{Binary, Identicon, Resolution};
+use Usarise\Identicon\{Identicon, Resolution};
 use Usarise\IdenticonTests\ImageDriver\CustomDriver;
 
 final class IdenticonTest extends TestCase {
@@ -14,13 +14,6 @@ final class IdenticonTest extends TestCase {
      * @var int
      */
     private const IMAGE_SIZE = 420;
-
-    public function testImageBackgroundDefault(): void {
-        $this->assertEquals(
-            '#F0F0F0',
-            Identicon::IMAGE_BACKGROUND,
-        );
-    }
 
     public function testCustomDriver(): void {
         $identicon = new Identicon(
@@ -98,24 +91,6 @@ final class IdenticonTest extends TestCase {
         );
     }
 
-    public function testFillColor(): void {
-        $identicon = new Identicon(
-            new CustomDriver(),
-            self::IMAGE_SIZE,
-        );
-
-        $binary = new Binary(
-            $identicon->resolution,
-        );
-
-        $this->assertEquals(
-            '#55c878',
-            $identicon->getFillColor(
-                $binary->getBytes('test'),
-            ),
-        );
-    }
-
     public function testBackgroundException(): void {
         $this->expectException(InvalidArgumentException::class);
 
@@ -141,52 +116,6 @@ final class IdenticonTest extends TestCase {
         $identicon->generate(
             str: 'test',
             fill: 'invalid',
-        );
-    }
-
-    public function testHexColorValidation(): void {
-        $identicon = new Identicon(
-            new CustomDriver(),
-            self::IMAGE_SIZE,
-        );
-
-        $this->assertTrue(
-            $identicon->hexColorValidation('#F0F0F0'),
-        );
-
-        $this->assertTrue(
-            $identicon->hexColorValidation('#f2f1f2'),
-        );
-    }
-
-    public function testHexColorValidationFalse(): void {
-        $identicon = new Identicon(
-            new CustomDriver(),
-            self::IMAGE_SIZE,
-        );
-
-        $this->assertFalse(
-            $identicon->hexColorValidation('#000'),
-        );
-
-        $this->assertFalse(
-            $identicon->hexColorValidation('#0000000'),
-        );
-
-        $this->assertFalse(
-            $identicon->hexColorValidation('##FFFFF'),
-        );
-
-        $this->assertFalse(
-            $identicon->hexColorValidation('FFFFFFF'),
-        );
-
-        $this->assertFalse(
-            $identicon->hexColorValidation('invalid'),
-        );
-
-        $this->assertFalse(
-            $identicon->hexColorValidation('#TEST00'),
         );
     }
 }

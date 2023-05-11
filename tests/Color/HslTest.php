@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Usarise\IdenticonTests;
+namespace Usarise\IdenticonTests\Color;
 
 use PHPUnit\Framework\TestCase;
-use Usarise\Identicon\Hsl;
+use Usarise\Identicon\Color\Hsl;
 
 final class HslTest extends TestCase {
     public function testHslBlack(): void {

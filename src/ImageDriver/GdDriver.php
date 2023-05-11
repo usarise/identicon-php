@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Usarise\Identicon\ImageDriver;
 
+use Usarise\Identicon\Color\Color;
+
 final class GdDriver implements ImageDriverInterface {
     private int $color;
     private \GdImage $image;
@@ -18,7 +20,7 @@ final class GdDriver implements ImageDriverInterface {
             $image,
             ...sscanf(
                 $fill,
-                '#%02x%02x%02x',
+                Color::FORMAT,
             ),
         );
 
@@ -30,7 +32,7 @@ final class GdDriver implements ImageDriverInterface {
                 $image,
                 ...sscanf(
                     $background,
-                    '#%02x%02x%02x',
+                    Color::FORMAT,
                 ),
             ),
         );

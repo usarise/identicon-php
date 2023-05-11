@@ -7,6 +7,7 @@ use Rector\CodingStyle\Rector\ClassMethod\NewlineBeforeNewAssignSetRector;
 use Rector\CodingStyle\Rector\PostInc\PostIncDecToPreIncDecRector;
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
+use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 
@@ -23,6 +24,9 @@ return static function (RectorConfig $rectorConfig): void {
         NewlineBeforeNewAssignSetRector::class,
         PostIncDecToPreIncDecRector::class => [
             __DIR__ . '/src/Binary.php',
+        ],
+        ChangeAndIfToEarlyReturnRector::class => [
+            __DIR__ . '/src/Color/Color.php',
         ],
     ]);
 

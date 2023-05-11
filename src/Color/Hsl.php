@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Usarise\Identicon;
+namespace Usarise\Identicon\Color;
 
 // source - https://github.com/dgraham/identicon/blob/v0.2.1/src/hsl.rs
 final class Hsl {
