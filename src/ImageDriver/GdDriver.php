@@ -19,30 +19,34 @@ final class GdDriver implements ImageDriverInterface {
         }
     }
 
+    private function color(\GdImage $image, string $color): int {
+        return imagecolorallocate(
+            $image,
+            ...sscanf(
+                $color,
+                Color::FORMAT,
+            ),
+        );
+    }
+
     public function draw(int $size, string $background, string $fill): self {
         $image = imagecreate(
             $size,
             $size,
         );
 
-        $this->color = imagecolorallocate(
+        $this->color = $this->color(
             $image,
-            ...sscanf(
-                $fill,
-                Color::FORMAT,
-            ),
+            $fill,
         );
 
         imagefill(
             image: $image,
             x: 0,
             y: 0,
-            color: imagecolorallocate(
+            color: $this->color(
                 $image,
-                ...sscanf(
-                    $background,
-                    Color::FORMAT,
-                ),
+                $background,
             ),
         );
 
