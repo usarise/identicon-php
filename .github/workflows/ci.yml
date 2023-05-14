@@ -26,14 +26,18 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: composer:v2, cs2pr
           coverage: none
+
       - name: "Check composer validate"
       - run: composer validate --strict --ansi
+
       - name: "Install dependencies (Composer)"
       - uses: ramsey/composer-install@v2
         with:
           composer-options: --prefer-dist --optimize-autoloader --ansi
+
       - name: "Check composer normalize (composer-normalize)"
       - run: composer normalize --dry-run --diff --ansi
+
       - name: "Check coding standards (PHP-CS-Fixer)"
       - run: composer csfixer -- --format=checkstyle --ansi | cs2pr
 
@@ -52,6 +56,7 @@ jobs:
       - uses: ramsey/composer-install@v2
         with:
           composer-options: --prefer-dist --optimize-autoloader --ansi
+
       - name: "Statically analyze code (PHPStan)"
       - run: composer phpstan -- --ansi
 
