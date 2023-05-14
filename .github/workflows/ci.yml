@@ -30,7 +30,7 @@ jobs:
         with:
           composer-options: --prefer-dist --optimize-autoloader --ansi
       - name: "Statically analyze code (PHPStan)"
-      - run: composer phpstan -- --ansi
+        run: composer phpstan -- --ansi
 
   rector:
     runs-on: ubuntu-latest
