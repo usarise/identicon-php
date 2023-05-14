@@ -21,7 +21,7 @@
     },
     "suggest": {
         "ext-gd": "to use the GD driver",
-        "ext-imagick": "to use the Imagick driver",
+        "ext-imagick": "to use the Imagick driver"
     },
     "autoload": {
         "psr-4": {
