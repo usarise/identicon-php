@@ -14,38 +14,7 @@ permissions:
   contents: read
 
 jobs:
-  composer-validate:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php: [8.2]
-    steps:
-      - uses: actions/checkout@v3
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          tools: composer:v2
-          coverage: none
-      - run: composer validate --strict --ansi
-
-  composer-normalize:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php: [8.2]
-    steps:
-      - uses: actions/checkout@v3
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          tools: composer:v2
-          coverage: none
-      - uses: ramsey/composer-install@v2
-        with:
-          composer-options: --prefer-dist --optimize-autoloader --ansi
-      - run: composer normalize --dry-run --diff --ansi
-
-  php-cs-fixer:
+  coding-standards:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -57,12 +26,18 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: composer:v2, cs2pr
           coverage: none
+      - name: "Check composer validate"
+      - run: composer validate --strict --ansi
+      - name: "Install dependencies (Composer)"
       - uses: ramsey/composer-install@v2
         with:
           composer-options: --prefer-dist --optimize-autoloader --ansi
+      - name: "Check composer normalize (composer-normalize)"
+      - run: composer normalize --dry-run --diff --ansi
+      - name: "Check coding standards (PHP-CS-Fixer)"
       - run: composer csfixer -- --format=checkstyle --ansi | cs2pr
 
-  phpstan:
+  static-analysis:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -77,6 +52,7 @@ jobs:
       - uses: ramsey/composer-install@v2
         with:
           composer-options: --prefer-dist --optimize-autoloader --ansi
+      - name: "Statically analyze code (PHPStan)"
       - run: composer phpstan -- --ansi
 
   rector:
