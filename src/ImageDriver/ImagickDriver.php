@@ -4,10 +4,20 @@ declare(strict_types=1);
 
 namespace Usarise\Identicon\ImageDriver;
 
+use Usarise\Identicon\Exception\RuntimeException;
+
 final class ImagickDriver implements ImageDriverInterface {
     private int $size;
     private \ImagickDraw $image;
     private \ImagickPixel $background;
+
+    public function __construct() {
+        if (!\extension_loaded('imagick')) {
+            throw new RuntimeException(
+                'The imagick extension is not available',
+            );
+        }
+    }
 
     public function draw(int $size, string $background, string $fill): self {
         $image = new \ImagickDraw();

@@ -5,10 +5,19 @@ declare(strict_types=1);
 namespace Usarise\Identicon\ImageDriver;
 
 use Usarise\Identicon\Color\Color;
+use Usarise\Identicon\Exception\RuntimeException;
 
 final class GdDriver implements ImageDriverInterface {
     private int $color;
     private \GdImage $image;
+
+    public function __construct() {
+        if (!\extension_loaded('gd')) {
+            throw new RuntimeException(
+                'The gd extension is not available',
+            );
+        }
+    }
 
     public function draw(int $size, string $background, string $fill): self {
         $image = imagecreate(
