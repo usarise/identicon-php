@@ -45,27 +45,28 @@ final class Identicon {
         );
 
         $size = $this->size;
-        $blockSize = floor($size / $this->resolution->value);
+        $pixelSize = (int) floor($size / $this->resolution->value);
 
         $draw = $this->image->draw(
             $size,
+            $pixelSize,
             $color->background ?? Color::DEFAULT_BACKGROUND,
             $color->fill ?? $color->generate($bytes),
         );
 
-        foreach (range(0, $size) as $x) {
-            foreach (range(0, $size) as $y) {
-                $xBlockSize = (int) floor($x / $blockSize);
-                $yBlockSize = (int) floor($y / $blockSize);
+        foreach (range(0, $size, $pixelSize) as $x) {
+            foreach (range(0, $size, $pixelSize) as $y) {
+                $xBlock = (int) floor($x / $pixelSize);
+                $yBlock = (int) floor($y / $pixelSize);
 
                 if (!isset(
-                    $pixels[$xBlockSize],
-                    $pixels[$xBlockSize][$yBlockSize],
+                    $pixels[$xBlock],
+                    $pixels[$xBlock][$yBlock],
                 )) {
                     continue;
                 }
 
-                if ($pixels[$xBlockSize][$yBlockSize] === 1) {
+                if ($pixels[$xBlock][$yBlock] === 1) {
                     $draw->pixel($x, $y);
                 }
             }

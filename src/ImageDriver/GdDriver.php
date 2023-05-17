@@ -9,6 +9,7 @@ use Usarise\Identicon\Exception\RuntimeException;
 
 final class GdDriver implements ImageDriverInterface {
     private int $color;
+    private int $pixelSize;
     private \GdImage $image;
 
     public function __construct() {
@@ -19,7 +20,7 @@ final class GdDriver implements ImageDriverInterface {
         }
     }
 
-    public function draw(int $size, string $background, string $fill): self {
+    public function draw(int $size, int $pixelSize, string $background, string $fill): self {
         $image = imagecreate(
             $size,
             $size,
@@ -40,16 +41,19 @@ final class GdDriver implements ImageDriverInterface {
             ),
         );
 
+        $this->pixelSize = $pixelSize;
         $this->image = $image;
 
         return $this;
     }
 
     public function pixel(int $x, int $y): void {
-        imagesetpixel(
+        imagefilledrectangle(
             $this->image,
             $x,
             $y,
+            $x + $this->pixelSize,
+            $y + $this->pixelSize,
             $this->color,
         );
     }

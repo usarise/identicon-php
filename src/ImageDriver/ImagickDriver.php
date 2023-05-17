@@ -8,6 +8,7 @@ use Usarise\Identicon\Exception\RuntimeException;
 
 final class ImagickDriver implements ImageDriverInterface {
     private int $size;
+    private int $pixelSize;
     private \ImagickDraw $image;
     private \ImagickPixel $background;
 
@@ -19,7 +20,7 @@ final class ImagickDriver implements ImageDriverInterface {
         }
     }
 
-    public function draw(int $size, string $background, string $fill): self {
+    public function draw(int $size, int $pixelSize, string $background, string $fill): self {
         $image = new \ImagickDraw();
 
         $image->setFillColor(
@@ -27,6 +28,7 @@ final class ImagickDriver implements ImageDriverInterface {
         );
 
         $this->size = $size;
+        $this->pixelSize = $pixelSize;
         $this->image = $image;
         $this->background = new \ImagickPixel($background);
 
@@ -34,7 +36,12 @@ final class ImagickDriver implements ImageDriverInterface {
     }
 
     public function pixel(int $x, int $y): void {
-        $this->image->point($x, $y);
+        $this->image->rectangle(
+            $x,
+            $y,
+            $x + $this->pixelSize,
+            $y + $this->pixelSize,
+        );
     }
 
     public function getImageBlob(): string {
