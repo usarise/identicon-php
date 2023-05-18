@@ -36,11 +36,13 @@ final class ImagickDriver implements ImageDriverInterface {
     }
 
     public function pixel(int $x, int $y): void {
+        $pixelSize = $this->pixelSize - 1;
+
         $this->image->rectangle(
             $x,
             $y,
-            $x + $this->pixelSize,
-            $y + $this->pixelSize,
+            $x + $pixelSize,
+            $y + $pixelSize,
         );
     }
 

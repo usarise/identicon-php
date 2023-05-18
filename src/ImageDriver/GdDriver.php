@@ -48,12 +48,14 @@ final class GdDriver implements ImageDriverInterface {
     }
 
     public function pixel(int $x, int $y): void {
+        $pixelSize = $this->pixelSize - 1;
+
         imagefilledrectangle(
             $this->image,
             $x,
             $y,
-            $x + $this->pixelSize,
-            $y + $this->pixelSize,
+            $x + $pixelSize,
+            $y + $pixelSize,
             $this->color,
         );
     }
