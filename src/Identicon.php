@@ -26,7 +26,7 @@ final class Identicon {
         }
     }
 
-    public function generate(string $str, ?string $background = null, ?string $fill = null): string {
+    public function generate(string $str, ?string $background = null, ?string $fill = null): Response {
         $color = new Color(
             $background,
             $fill,

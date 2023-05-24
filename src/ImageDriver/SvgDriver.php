@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Usarise\Identicon\ImageDriver;
 
+use Usarise\Identicon\Response;
+
 final class SvgDriver implements ImageDriverInterface {
     private int $size;
     private int $pixelSize;
@@ -34,23 +36,26 @@ final class SvgDriver implements ImageDriverInterface {
                          '"/>';
     }
 
-    public function response(): string {
+    public function response(): Response {
         $size = $this->size;
 
-        return '<?xml version="1.0" encoding="UTF-8" standalone="no"?>' .
-                '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">' .
-                '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ' .
-                'x="0px" y="0px" width="' .
-                $size . 'px" height="' .
-                $size . 'px" viewBox="0 0 ' .
-                $size . ' ' .
-                $size . '" enable-background="new 0 0 ' .
-                $size . ' ' .
-                $size . '" xml:space="preserve">' .
-                '<rect x="0px" y="0px" width="' .
-                $size . 'px" height="' .
-                $size . 'px" fill="' .
-                $this->background . '"/>' .
-                $this->pixels . '</svg>';
+        return new Response(
+            'svg',
+            '<?xml version="1.0" encoding="UTF-8" standalone="no"?>' .
+            '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">' .
+            '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ' .
+            'x="0px" y="0px" width="' .
+            $size . 'px" height="' .
+            $size . 'px" viewBox="0 0 ' .
+            $size . ' ' .
+            $size . '" enable-background="new 0 0 ' .
+            $size . ' ' .
+            $size . '" xml:space="preserve">' .
+            '<rect x="0px" y="0px" width="' .
+            $size . 'px" height="' .
+            $size . 'px" fill="' .
+            $this->background . '"/>' .
+            $this->pixels . '</svg>',
+        );
     }
 }

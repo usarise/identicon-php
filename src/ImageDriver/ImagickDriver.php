@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Usarise\Identicon\ImageDriver;
 
 use Usarise\Identicon\Exception\RuntimeException;
+use Usarise\Identicon\Response;
 
 final class ImagickDriver implements ImageDriverInterface {
     private int $size;
@@ -46,7 +47,7 @@ final class ImagickDriver implements ImageDriverInterface {
         );
     }
 
-    public function response(): string {
+    public function response(): Response {
         $imagick = new \Imagick();
 
         $imagick->newImage(
@@ -61,6 +62,9 @@ final class ImagickDriver implements ImageDriverInterface {
         $imagick->setOption('png:compression-level', '9');
         $imagick->stripImage();
 
-        return $imagick->getImagesBlob();
+        return new Response(
+            'png',
+            $imagick->getImagesBlob(),
+        );
     }
 }

@@ -34,7 +34,7 @@ final class ImagickDriverTest extends TestCase {
         );
     }
 
-    public function testImageGenerate(): void {
+    public function testGenerate(): void {
         $finfo = new \finfo(FILEINFO_MIME);
 
         $identicon = new Identicon(
@@ -42,10 +42,24 @@ final class ImagickDriverTest extends TestCase {
             self::IMAGE_SIZE,
         );
 
+        $generate = $identicon->generate('test');
+
+        $this->assertEquals(
+            'png',
+            $generate->format,
+        );
+
         $this->assertEquals(
             'image/png; charset=binary',
             $finfo->buffer(
-                $identicon->generate('test'),
+                $generate->output,
+            ),
+        );
+
+        $this->assertEquals(
+            'image/png; charset=binary',
+            $finfo->buffer(
+                (string) $generate,
             ),
         );
     }
@@ -58,7 +72,7 @@ final class ImagickDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/default/test.imagick.png'),
-            $identicon->generate('test'),
+            (string) $identicon->generate('test'),
         );
     }
 
@@ -70,7 +84,7 @@ final class ImagickDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/color/test.background.imagick.png'),
-            $identicon->generate(
+            (string) $identicon->generate(
                 'test',
                 '#f2f1f2',
             ),
@@ -85,7 +99,7 @@ final class ImagickDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/color/test.fill.imagick.png'),
-            $identicon->generate(
+            (string) $identicon->generate(
                 'test',
                 null,
                 '#84c7b5',
@@ -101,7 +115,7 @@ final class ImagickDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/color/test.background.fill.imagick.png'),
-            $identicon->generate(
+            (string) $identicon->generate(
                 'test',
                 '#f2f1f2',
                 '#84c7b5',
@@ -118,7 +132,7 @@ final class ImagickDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/resolution/r.tiny.imagick.png'),
-            $identicon->generate('r'),
+            (string) $identicon->generate('r'),
         );
     }
 
@@ -131,7 +145,7 @@ final class ImagickDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/resolution/r.small.imagick.png'),
-            $identicon->generate('r'),
+            (string) $identicon->generate('r'),
         );
     }
 
@@ -144,7 +158,7 @@ final class ImagickDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/resolution/r.medium.imagick.png'),
-            $identicon->generate('r'),
+            (string) $identicon->generate('r'),
         );
     }
 
@@ -157,7 +171,7 @@ final class ImagickDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/resolution/r.large.imagick.png'),
-            $identicon->generate('r'),
+            (string) $identicon->generate('r'),
         );
     }
 
@@ -170,7 +184,7 @@ final class ImagickDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/resolution/r.huge.imagick.png'),
-            $identicon->generate('r'),
+            (string) $identicon->generate('r'),
         );
     }
 }

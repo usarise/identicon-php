@@ -26,7 +26,7 @@ final class SvgDriverTest extends TestCase {
         );
     }
 
-    public function testImageGenerate(): void {
+    public function testGenerate(): void {
         $finfo = new \finfo(FILEINFO_MIME);
 
         $identicon = new Identicon(
@@ -34,10 +34,24 @@ final class SvgDriverTest extends TestCase {
             self::IMAGE_SIZE,
         );
 
+        $generate = $identicon->generate('test');
+
+        $this->assertEquals(
+            'svg',
+            $generate->format,
+        );
+
         $this->assertEquals(
             'image/svg+xml; charset=us-ascii',
             $finfo->buffer(
-                $identicon->generate('test'),
+                $generate->output,
+            ),
+        );
+
+        $this->assertEquals(
+            'image/svg+xml; charset=us-ascii',
+            $finfo->buffer(
+                (string) $generate,
             ),
         );
     }
@@ -50,7 +64,7 @@ final class SvgDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/default/test.svg'),
-            $identicon->generate('test'),
+            (string) $identicon->generate('test'),
         );
     }
 
@@ -65,7 +79,7 @@ final class SvgDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/default/test.svg'),
-            $identicon->generate('test'),
+            (string) $identicon->generate('test'),
         );
     }
 
@@ -77,7 +91,7 @@ final class SvgDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/color/test.background.svg'),
-            $identicon->generate(
+            (string) $identicon->generate(
                 'test',
                 '#f2f1f2',
             ),
@@ -92,7 +106,7 @@ final class SvgDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/color/test.fill.svg'),
-            $identicon->generate(
+            (string) $identicon->generate(
                 'test',
                 null,
                 '#84c7b5',
@@ -108,7 +122,7 @@ final class SvgDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/color/test.background.fill.svg'),
-            $identicon->generate(
+            (string) $identicon->generate(
                 'test',
                 '#f2f1f2',
                 '#84c7b5',
@@ -125,7 +139,7 @@ final class SvgDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/resolution/r.tiny.svg'),
-            $identicon->generate('r'),
+            (string) $identicon->generate('r'),
         );
     }
 
@@ -138,7 +152,7 @@ final class SvgDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/resolution/r.small.svg'),
-            $identicon->generate('r'),
+            (string) $identicon->generate('r'),
         );
     }
 
@@ -151,7 +165,7 @@ final class SvgDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/resolution/r.medium.svg'),
-            $identicon->generate('r'),
+            (string) $identicon->generate('r'),
         );
     }
 
@@ -164,7 +178,7 @@ final class SvgDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/resolution/r.large.svg'),
-            $identicon->generate('r'),
+            (string) $identicon->generate('r'),
         );
     }
 
@@ -177,7 +191,7 @@ final class SvgDriverTest extends TestCase {
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/fixtures/resolution/r.huge.svg'),
-            $identicon->generate('r'),
+            (string) $identicon->generate('r'),
         );
     }
 }

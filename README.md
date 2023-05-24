@@ -29,5 +29,5 @@ $identicon = new Identicon(
 );
 
 header('Content-type: image/png');
-echo $identicon->generate('test');
+echo (string) $identicon->generate('test');
 ```

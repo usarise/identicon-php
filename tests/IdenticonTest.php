@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Usarise\IdenticonTests;
 
-use PHPUnit\Framework\TestCase;
 use Usarise\Identicon\Exception\InvalidArgumentException;
 use Usarise\Identicon\{Identicon, Resolution};
 use Usarise\IdenticonTests\ImageDriver\CustomDriver;
 
-final class IdenticonTest extends TestCase {
+final class IdenticonTest extends IdenticonTestCase {
     /**
      * @var int
      */
@@ -116,6 +115,39 @@ final class IdenticonTest extends TestCase {
         $identicon->generate(
             str: 'test',
             fill: 'invalid',
+        );
+    }
+
+    public function testGenerate(): void {
+        $identicon = new Identicon(
+            new CustomDriver(),
+            self::IMAGE_SIZE,
+        );
+
+        $generate = $identicon->generate('test');
+
+        $this->assertEquals(
+            'tmp',
+            $generate->format,
+        );
+
+        $this->assertEquals(
+            'test response',
+            $generate->output,
+        );
+
+        $this->assertEquals(
+            'test response',
+            (string) $generate,
+        );
+
+        $generate->save(
+            $file = self::TEMP_GENERATE,
+        );
+
+        $this->assertEquals(
+            file_get_contents($file),
+            'test response',
         );
     }
 }

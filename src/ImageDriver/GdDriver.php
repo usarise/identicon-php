@@ -6,6 +6,7 @@ namespace Usarise\Identicon\ImageDriver;
 
 use Usarise\Identicon\Color\Color;
 use Usarise\Identicon\Exception\RuntimeException;
+use Usarise\Identicon\Response;
 
 final class GdDriver implements ImageDriverInterface {
     private int $color;
@@ -60,7 +61,7 @@ final class GdDriver implements ImageDriverInterface {
         );
     }
 
-    public function response(): string {
+    public function response(): Response {
         ob_start();
 
         imagepng(
@@ -71,7 +72,10 @@ final class GdDriver implements ImageDriverInterface {
         $imageBlob = ob_get_contents();
         ob_end_clean();
 
-        return (string) $imageBlob;
+        return new Response(
+            'png',
+            (string) $imageBlob,
+        );
     }
 
     private function color(\GdImage $image, string $color): int {
