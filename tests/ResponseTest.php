@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Usarise\IdenticonTests;
 
+use Usarise\Identicon\Exception\RuntimeException;
 use Usarise\Identicon\Response;
 
 final class ResponseTest extends IdenticonTestCase {
@@ -26,6 +27,30 @@ final class ResponseTest extends IdenticonTestCase {
         $this->assertEquals(
             'output',
             (string) $response,
+        );
+    }
+
+    public function testSaveValueError(): void {
+        $this->expectException(\ValueError::class);
+
+        $response = new Response(
+            'tmp',
+            'test write',
+        );
+
+        $response->save('');
+    }
+
+    public function testSaveException(): void {
+        $this->expectException(RuntimeException::class);
+
+        $response = new Response(
+            'tmp',
+            'test write',
+        );
+
+        $response->save(
+            self::TEMP_DIR,
         );
     }
 
