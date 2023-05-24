@@ -20,7 +20,7 @@ final class GdDriver implements ImageDriverInterface {
         }
     }
 
-    public function draw(int $size, int $pixelSize, string $background, string $fill): self {
+    public function canvas(int $size, int $pixelSize, string $background, string $fill): self {
         $image = imagecreate(
             $size,
             $size,
@@ -47,7 +47,7 @@ final class GdDriver implements ImageDriverInterface {
         return $this;
     }
 
-    public function pixel(int $x, int $y): void {
+    public function drawPixel(int $x, int $y): void {
         $pixelSize = $this->pixelSize - 1;
 
         imagefilledrectangle(
@@ -60,7 +60,7 @@ final class GdDriver implements ImageDriverInterface {
         );
     }
 
-    public function getImageBlob(): string {
+    public function response(): string {
         ob_start();
 
         imagepng(

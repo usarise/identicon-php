@@ -20,7 +20,7 @@ final class ImagickDriver implements ImageDriverInterface {
         }
     }
 
-    public function draw(int $size, int $pixelSize, string $background, string $fill): self {
+    public function canvas(int $size, int $pixelSize, string $background, string $fill): self {
         $image = new \ImagickDraw();
 
         $image->setFillColor(
@@ -35,7 +35,7 @@ final class ImagickDriver implements ImageDriverInterface {
         return $this;
     }
 
-    public function pixel(int $x, int $y): void {
+    public function drawPixel(int $x, int $y): void {
         $pixelSize = $this->pixelSize - 1;
 
         $this->image->rectangle(
@@ -46,7 +46,7 @@ final class ImagickDriver implements ImageDriverInterface {
         );
     }
 
-    public function getImageBlob(): string {
+    public function response(): string {
         $imagick = new \Imagick();
 
         $imagick->newImage(

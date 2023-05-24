@@ -11,7 +11,7 @@ final class SvgDriver implements ImageDriverInterface {
     private string $fill;
     private string $pixels;
 
-    public function draw(int $size, int $pixelSize, string $background, string $fill): self {
+    public function canvas(int $size, int $pixelSize, string $background, string $fill): self {
         $this->size = $size;
         $this->pixelSize = $pixelSize;
         $this->background = $background;
@@ -21,7 +21,7 @@ final class SvgDriver implements ImageDriverInterface {
         return $this;
     }
 
-    public function pixel(int $x, int $y): void {
+    public function drawPixel(int $x, int $y): void {
         $pixelSize = $this->pixelSize;
 
         $this->pixels .= '<rect x="' .
@@ -34,7 +34,7 @@ final class SvgDriver implements ImageDriverInterface {
                          '"/>';
     }
 
-    public function getImageBlob(): string {
+    public function response(): string {
         $size = $this->size;
 
         return '<?xml version="1.0" encoding="UTF-8" standalone="no"?>' .
