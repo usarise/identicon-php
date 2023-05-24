@@ -12,7 +12,7 @@ Based and inspired on
 composer require usarise/identicon
 ```
 
-### Usage
+### Usage browser
 ```php
 <?php
 
@@ -30,4 +30,23 @@ $identicon = new Identicon(
 
 header('Content-type: image/png');
 echo (string) $identicon->generate('test');
+```
+
+### Usage write file
+```php
+<?php
+
+declare(strict_types=1);
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Usarise\Identicon\Identicon;
+use Usarise\Identicon\ImageDriver\GdDriver;
+
+$identicon = new Identicon(
+    new GdDriver(),
+    420,
+);
+
+$identicon->generate('test')->save('test.png');
 ```
