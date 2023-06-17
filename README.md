@@ -28,8 +28,10 @@ $identicon = new Identicon(
     420,
 );
 
-header('Content-type: image/png');
-echo (string) $identicon->generate('test');
+$image = $identicon->generate('test');
+
+header("Content-type: {$image->mimeType}");
+echo (string) $image;
 ```
 
 ### Usage write file
@@ -48,5 +50,6 @@ $identicon = new Identicon(
     420,
 );
 
-$identicon->generate('test')->save('test.png');
+$image = $identicon->generate('test');
+$image->save("test.{$image->format}");
 ```
