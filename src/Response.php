@@ -9,6 +9,7 @@ use Usarise\Identicon\Exception\RuntimeException;
 final class Response implements \Stringable {
     public function __construct(
         public readonly string $format,
+        public readonly string $mimeType,
         public readonly string $output,
     ) {
     }

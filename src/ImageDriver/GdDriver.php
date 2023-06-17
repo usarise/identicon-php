@@ -74,6 +74,7 @@ final class GdDriver implements ImageDriverInterface {
 
         return new Response(
             'png',
+            'image/png',
             (string) $imageBlob,
         );
     }

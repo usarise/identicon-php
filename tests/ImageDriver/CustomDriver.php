@@ -18,6 +18,7 @@ final class CustomDriver implements ImageDriverInterface {
     public function response(): Response {
         return new Response(
             'tmp',
+            'text/plain',
             'test response',
         );
     }

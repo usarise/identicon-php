@@ -11,12 +11,18 @@ final class ResponseTest extends IdenticonTestCase {
     public function testBase(): void {
         $response = new Response(
             'format',
+            'mimeType',
             'output',
         );
 
         $this->assertEquals(
             'format',
             $response->format,
+        );
+
+        $this->assertEquals(
+            'mimeType',
+            $response->mimeType,
         );
 
         $this->assertEquals(
@@ -35,6 +41,7 @@ final class ResponseTest extends IdenticonTestCase {
 
         $response = new Response(
             'tmp',
+            'text/plain',
             'test write',
         );
 
@@ -46,6 +53,7 @@ final class ResponseTest extends IdenticonTestCase {
 
         $response = new Response(
             'tmp',
+            'text/plain',
             'test write',
         );
 
@@ -57,6 +65,7 @@ final class ResponseTest extends IdenticonTestCase {
     public function testSave(): void {
         $response = new Response(
             'tmp',
+            'text/plain',
             'test write',
         );
 

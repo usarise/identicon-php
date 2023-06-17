@@ -42,6 +42,11 @@ final class SvgDriverTest extends TestCase {
         );
 
         $this->assertEquals(
+            'image/svg+xml',
+            $generate->mimeType,
+        );
+
+        $this->assertEquals(
             'image/svg+xml; charset=us-ascii',
             $finfo->buffer(
                 $generate->output,

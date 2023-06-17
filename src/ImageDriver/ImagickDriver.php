@@ -64,6 +64,7 @@ final class ImagickDriver implements ImageDriverInterface {
 
         return new Response(
             'png',
+            'image/png',
             $imagick->getImagesBlob(),
         );
     }

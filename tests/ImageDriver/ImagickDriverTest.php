@@ -50,6 +50,11 @@ final class ImagickDriverTest extends TestCase {
         );
 
         $this->assertEquals(
+            'image/png',
+            $generate->mimeType,
+        );
+
+        $this->assertEquals(
             'image/png; charset=binary',
             $finfo->buffer(
                 $generate->output,
