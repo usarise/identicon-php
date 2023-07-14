@@ -50,6 +50,12 @@ final class IdenticonTest extends IdenticonTestCase {
 
     public function testBadSize(): void {
         $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            sprintf(
+                'Size must be a multiple of %s',
+                Resolution::Medium->value,
+            ),
+        );
 
         new Identicon(
             image: new CustomDriver(),
@@ -58,12 +64,20 @@ final class IdenticonTest extends IdenticonTestCase {
     }
 
     public function testBadSizeResolution(): void {
+        $resolution = Resolution::Tiny;
+
         $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            sprintf(
+                'Size must be a multiple of %s',
+                $resolution->value,
+            ),
+        );
 
         new Identicon(
             image: new CustomDriver(),
             size: self::IMAGE_SIZE,
-            resolution: Resolution::Tiny,
+            resolution: $resolution,
         );
     }
 
@@ -92,6 +106,7 @@ final class IdenticonTest extends IdenticonTestCase {
 
     public function testBackgroundException(): void {
         $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid background format');
 
         $identicon = new Identicon(
             new CustomDriver(),
@@ -106,6 +121,7 @@ final class IdenticonTest extends IdenticonTestCase {
 
     public function testFillException(): void {
         $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid fill format');
 
         $identicon = new Identicon(
             new CustomDriver(),

@@ -51,6 +51,7 @@ final class ColorTest extends TestCase {
 
     public function testBackgroundException(): void {
         $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid background format');
 
         new Color(
             background: 'invalid',
@@ -60,6 +61,7 @@ final class ColorTest extends TestCase {
 
     public function testFillException(): void {
         $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid fill format');
 
         new Color(
             background: null,

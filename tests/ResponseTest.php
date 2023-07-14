@@ -50,6 +50,7 @@ final class ResponseTest extends IdenticonTestCase {
 
     public function testSaveException(): void {
         $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Failed write image to file');
 
         $response = new Response(
             'tmp',
