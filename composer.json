@@ -13,11 +13,11 @@
         "php": "^8.1"
     },
     "require-dev": {
-        "ergebnis/composer-normalize": "^2.31.0",
-        "friendsofphp/php-cs-fixer": "^3.18.0",
-        "phpstan/phpstan": "^1.10.21",
-        "phpunit/phpunit": "^10.2.2",
-        "rector/rector": "^0.17.1"
+        "ergebnis/composer-normalize": "^2.33.0",
+        "friendsofphp/php-cs-fixer": "^3.21.1",
+        "phpstan/phpstan": "^1.10.25",
+        "phpunit/phpunit": "^10.2.5",
+        "rector/rector": "^0.17.5"
     },
     "suggest": {
         "ext-gd": "to use the GD driver",
