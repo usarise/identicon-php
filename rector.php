@@ -3,8 +3,6 @@
 declare(strict_types=1);
 
 use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
-use Rector\CodingStyle\Rector\ClassMethod\NewlineBeforeNewAssignSetRector;
-use Rector\CodingStyle\Rector\PostInc\PostIncDecToPreIncDecRector;
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
@@ -22,10 +20,6 @@ return static function (RectorConfig $rectorConfig): void {
 
     $rectorConfig->skip([
         NewlineAfterStatementRector::class,
-        NewlineBeforeNewAssignSetRector::class,
-        PostIncDecToPreIncDecRector::class => [
-            __DIR__ . '/src/Binary.php',
-        ],
         ChangeAndIfToEarlyReturnRector::class => [
             __DIR__ . '/src/Color/Color.php',
         ],
