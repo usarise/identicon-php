@@ -45,42 +45,38 @@ final class Binary {
     }
 
     /**
-     * @return non-empty-array<int, array>
+     * @return array<int, non-empty-array<int, int<0, 1>>>
      */
     public function getPixels(string $binStr): array {
-        $binSplit = str_split($binStr);
-
-        $matrix = [];
-        $count = 0;
-        $level = 0;
-
+        $binaryList = str_split($binStr);
         $resolution = $this->resolution->value;
 
-        foreach ($binSplit as $bin) {
-            $matrix[$level][] = (int) $bin;
+        $matrix = [];
+        $level = 0;
 
-            if (++$count % $resolution === 0) {
-                $level++;
+        foreach ($binaryList as $key => $value) {
+            $levelEnd = ($key + 1) % $resolution === 0;
+
+            $matrix[$level][] = match (true) {
+                // Entry level is padding
+                $level === 0 => 0,
+                // Level start is padding
+                $key % $resolution === 0 => 0,
+                // Level end is padding
+                $levelEnd => 0,
+                // Converting string to binary number
+                default => (int) $value,
+            };
+
+            if ($levelEnd) {
+                ++$level;
             }
         }
 
-        $pixels = [
+        return [
             ...$matrix,
             ...array_reverse($matrix),
         ];
-
-        // Resolution calculation in the template starts from zero
-        --$resolution;
-
-        // Removing blocks at the edges
-        foreach (range(0, $this->resolution->value) as $i) {
-            $pixels[0][$i] = 0;
-            $pixels[$resolution][$i] = 0;
-            $pixels[$i][0] = 0;
-            $pixels[$i][$resolution] = 0;
-        }
-
-        return $pixels;
     }
 
     private function byteToBin(int $byte): string {
