@@ -31,7 +31,7 @@ final class Color {
     }
 
     /**
-     * @param non-empty-array<int, int> $bytes
+     * @param non-empty-array<int, int<0, 255>> $bytes
      */
     public function generate(array $bytes): string {
         // Use last 28 bits to determine HSL values.

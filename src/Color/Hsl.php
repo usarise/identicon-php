@@ -14,7 +14,7 @@ final class Hsl {
     }
 
     /**
-     * @return non-empty-array<int, int>
+     * @return non-empty-array<int<0, 2>, int<0, 255>>
      */
     public function rgb(): array {
         $hue = $this->hue / 360.0;

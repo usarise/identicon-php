@@ -13,7 +13,7 @@ final class Binary {
     }
 
     /**
-     * @return non-empty-array<int, int>
+     * @return non-empty-array<int<1, 16>, int<0, 255>>
      */
     public function getBytes(string $str): array {
         $bytes = (array) unpack('C*', hash('md5', $str, true));
@@ -26,7 +26,7 @@ final class Binary {
     }
 
     /**
-     * @param non-empty-array<int, int> $bytes
+     * @param non-empty-array<int<1, 16>, int<0, 255>> $bytes
      */
     public function getBinStr(array $bytes): string {
         $resolution = $this->resolution->value;
