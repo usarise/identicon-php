@@ -17,7 +17,7 @@
         "friendsofphp/php-cs-fixer": "^3.22.0",
         "phpstan/phpstan": "^1.10.26",
         "phpunit/phpunit": "^10.2.6",
-        "rector/rector": "^0.17.6"
+        "rector/rector": "^0.17.7"
     },
     "suggest": {
         "ext-gd": "to use the GD driver",
