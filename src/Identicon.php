@@ -26,7 +26,7 @@ final class Identicon {
         }
     }
 
-    public function generate(string $str, ?string $background = null, ?string $fill = null): Response {
+    public function generate(string $string, ?string $background = null, ?string $fill = null): Response {
         $color = new Color(
             $background,
             $fill,
@@ -37,7 +37,7 @@ final class Identicon {
         );
 
         $bytes = $binary->getBytes(
-            $str,
+            $string,
         );
 
         $pixels = $binary->getPixels(

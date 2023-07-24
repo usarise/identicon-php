@@ -114,7 +114,7 @@ final class IdenticonTest extends IdenticonTestCase {
         );
 
         $identicon->generate(
-            str: 'test',
+            string: 'test',
             background: 'invalid',
         );
     }
@@ -129,7 +129,7 @@ final class IdenticonTest extends IdenticonTestCase {
         );
 
         $identicon->generate(
-            str: 'test',
+            string: 'test',
             fill: 'invalid',
         );
     }
