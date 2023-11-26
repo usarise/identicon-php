@@ -59,6 +59,11 @@ final class SvgDriverTest extends TestCase {
                 (string) $generate,
             ),
         );
+
+        $this->assertEquals(
+            file_get_contents(__DIR__ . '/fixtures/default/test.image.svg'),
+            $generate->image,
+        );
     }
 
     public function testImageDefault(): void {

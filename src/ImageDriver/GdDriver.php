@@ -70,10 +70,11 @@ final class GdDriver implements ImageDriverInterface {
     }
 
     public function response(): Response {
+        $image = $this->image;
         ob_start();
 
         imagepng(
-            image: $this->image,
+            image: $image,
             quality: 9,
         );
 
@@ -81,9 +82,10 @@ final class GdDriver implements ImageDriverInterface {
         ob_end_clean();
 
         return new Response(
-            'png',
-            'image/png',
-            (string) $imageBlob,
+            format: 'png',
+            mimeType: 'image/png',
+            output: (string) $imageBlob,
+            image: $image,
         );
     }
 }

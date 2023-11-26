@@ -55,6 +55,7 @@ final class SvgDriver implements ImageDriverInterface {
             format: 'svg',
             mimeType: 'image/svg+xml',
             output: $minimizeImageSvg($imageSvg),
+            image: $imageSvg,
         );
     }
 

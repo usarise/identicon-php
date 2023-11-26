@@ -67,6 +67,11 @@ final class ImagickDriverTest extends TestCase {
                 (string) $generate,
             ),
         );
+
+        $this->assertInstanceOf(
+            \Imagick::class,
+            $generate->image,
+        );
     }
 
     public function testImageDefault(): void {

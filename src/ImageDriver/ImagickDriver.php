@@ -56,16 +56,19 @@ final class ImagickDriver implements ImageDriverInterface {
             $this->background,
         );
 
-        $imagick->setImageFormat('png');
         $imagick->drawImage($this->image);
 
+        $image = $imagick;
+
+        $imagick->setImageFormat('png');
         $imagick->setOption('png:compression-level', '9');
         $imagick->stripImage();
 
         return new Response(
-            'png',
-            'image/png',
-            $imagick->getImagesBlob(),
+            format: 'png',
+            mimeType: 'image/png',
+            output: $imagick->getImagesBlob(),
+            image: $image,
         );
     }
 }

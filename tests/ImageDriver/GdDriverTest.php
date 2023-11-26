@@ -67,6 +67,11 @@ final class GdDriverTest extends TestCase {
                 (string) $generate,
             ),
         );
+
+        $this->assertInstanceOf(
+            \GdImage::class,
+            $generate->image,
+        );
     }
 
     public function testImageDefault(): void {

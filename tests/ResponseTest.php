@@ -34,6 +34,10 @@ final class ResponseTest extends IdenticonTestCase {
             'output',
             (string) $response,
         );
+
+        $this->assertNull(
+            $response->image,
+        );
     }
 
     public function testSaveValueError(): void {
