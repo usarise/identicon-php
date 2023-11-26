@@ -13,11 +13,11 @@
         "php": "^8.1"
     },
     "require-dev": {
-        "ergebnis/composer-normalize": "^2.33.0",
-        "friendsofphp/php-cs-fixer": "^3.22.0",
-        "phpstan/phpstan": "^1.10.26",
-        "phpunit/phpunit": "^10.2.6",
-        "rector/rector": "^0.17.7"
+        "ergebnis/composer-normalize": "^2.39.0",
+        "friendsofphp/php-cs-fixer": "^3.40.0",
+        "phpstan/phpstan": "^1.10.44",
+        "phpunit/phpunit": "^10.4.2",
+        "rector/rector": "^0.18.10"
     },
     "suggest": {
         "ext-gd": "to use the GD driver",
@@ -46,7 +46,7 @@
             "@rector"
         ],
         "cleanup": "rm .php-cs-fixer.dist.cache",
-        "csfixer": "vendor/bin/php-cs-fixer fix --dry-run --diff",
+        "csfixer": "vendor/bin/php-cs-fixer check --diff",
         "phpstan": "vendor/bin/phpstan analyse",
         "rector": "vendor/bin/rector process --dry-run",
         "test": "vendor/bin/phpunit tests"
