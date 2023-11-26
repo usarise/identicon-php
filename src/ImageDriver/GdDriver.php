@@ -22,12 +22,20 @@ final class GdDriver implements ImageDriverInterface {
     }
 
     public function canvas(int $size, int $pixelSize, string $background, string $fill): self {
+        $color = static fn (\GdImage $image, string $hexColorCode): int => imagecolorallocate(
+            $image,
+            ...sscanf(
+                $hexColorCode,
+                Color::FORMAT,
+            ),
+        );
+
         $image = imagecreate(
             $size,
             $size,
         );
 
-        $this->color = $this->color(
+        $this->color = $color(
             $image,
             $fill,
         );
@@ -36,20 +44,20 @@ final class GdDriver implements ImageDriverInterface {
             image: $image,
             x: 0,
             y: 0,
-            color: $this->color(
+            color: $color(
                 $image,
                 $background,
             ),
         );
 
-        $this->pixelSize = $pixelSize;
+        $this->pixelSize = $pixelSize - 1;
         $this->image = $image;
 
         return $this;
     }
 
     public function drawPixel(int $x, int $y): void {
-        $pixelSize = $this->pixelSize - 1;
+        $pixelSize = $this->pixelSize;
 
         imagefilledrectangle(
             $this->image,
@@ -76,16 +84,6 @@ final class GdDriver implements ImageDriverInterface {
             'png',
             'image/png',
             (string) $imageBlob,
-        );
-    }
-
-    private function color(\GdImage $image, string $color): int {
-        return imagecolorallocate(
-            $image,
-            ...sscanf(
-                $color,
-                Color::FORMAT,
-            ),
         );
     }
 }

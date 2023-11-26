@@ -31,11 +31,20 @@ final class Binary {
     public function getBinStr(array $bytes): string {
         $resolution = $this->resolution->value;
 
+        $byteToBin = static fn (int $byte): string => str_pad(
+            string: decbin(
+                $byte,
+            ),
+            length: 8,
+            pad_string: '0',
+            pad_type: STR_PAD_LEFT,
+        );
+
         return substr(
             string: implode(
                 separator: '',
                 array: array_map(
-                    callback: $this->byteToBin(...),
+                    callback: $byteToBin,
                     array: $bytes,
                 ),
             ),
@@ -77,16 +86,5 @@ final class Binary {
             ...$matrix,
             ...array_reverse($matrix),
         ];
-    }
-
-    private function byteToBin(int $byte): string {
-        return str_pad(
-            string: decbin(
-                $byte,
-            ),
-            length: 8,
-            pad_string: '0',
-            pad_type: STR_PAD_LEFT,
-        );
     }
 }

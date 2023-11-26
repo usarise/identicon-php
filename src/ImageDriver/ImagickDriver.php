@@ -29,7 +29,7 @@ final class ImagickDriver implements ImageDriverInterface {
         );
 
         $this->size = $size;
-        $this->pixelSize = $pixelSize;
+        $this->pixelSize = $pixelSize - 1;
         $this->image = $image;
         $this->background = new \ImagickPixel($background);
 
@@ -37,7 +37,7 @@ final class ImagickDriver implements ImageDriverInterface {
     }
 
     public function drawPixel(int $x, int $y): void {
-        $pixelSize = $this->pixelSize - 1;
+        $pixelSize = $this->pixelSize;
 
         $this->image->rectangle(
             $x,
