@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
+use Rector\CodingStyle\Rector\Class_\AddArrayDefaultToArrayPropertyRector;
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
@@ -22,6 +23,9 @@ return static function (RectorConfig $rectorConfig): void {
         NewlineAfterStatementRector::class,
         ChangeAndIfToEarlyReturnRector::class => [
             __DIR__ . '/src/Color/Color.php',
+        ],
+        AddArrayDefaultToArrayPropertyRector::class => [
+            __DIR__ . '/src/ImageDriver/SvgDriver.php',
         ],
     ]);
 

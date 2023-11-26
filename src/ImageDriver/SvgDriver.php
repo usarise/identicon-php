@@ -11,14 +11,17 @@ final class SvgDriver implements ImageDriverInterface {
     private int $pixelSize;
     private string $background;
     private string $fill;
-    private string $pixels;
+    /**
+     * @var array<int, string>
+     */
+    private array $pixels;
 
     public function canvas(int $size, int $pixelSize, string $background, string $fill): self {
         $this->size = $size;
         $this->pixelSize = $pixelSize;
         $this->background = $background;
         $this->fill = $fill;
-        $this->pixels = '';
+        $this->pixels = [];
 
         return $this;
     }
@@ -26,37 +29,69 @@ final class SvgDriver implements ImageDriverInterface {
     public function drawPixel(int $x, int $y): void {
         $pixelSize = $this->pixelSize;
 
-        $this->pixels .= '<rect x="' .
-                         $x . 'px" y="' .
-                         $y . 'px" width="' .
-                         $pixelSize . 'px" height="' .
-                         $pixelSize .
-                         'px" fill="' .
-                         $this->fill .
-                         '"/>';
+        $this->pixels[] = $this->createSvgRect(
+            $x,
+            $y,
+            $pixelSize,
+            $pixelSize,
+            $this->fill,
+        );
     }
 
     public function response(): Response {
-        $size = $this->size;
+        $minimizeImageSvg = static fn (string $imageSvg): string => str_replace(
+            ["\n", "\x20\x20"],
+            '',
+            $imageSvg,
+        );
+
+        $imageSvg = $this->createSvg(
+            $this->size,
+            $this->background,
+            $this->pixels,
+        );
 
         return new Response(
-            'svg',
-            'image/svg+xml',
-            '<?xml version="1.0" encoding="UTF-8" standalone="no"?>' .
-            '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">' .
-            '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ' .
-            'x="0px" y="0px" width="' .
-            $size . 'px" height="' .
-            $size . 'px" viewBox="0 0 ' .
-            $size . ' ' .
-            $size . '" enable-background="new 0 0 ' .
-            $size . ' ' .
-            $size . '" xml:space="preserve">' .
-            '<rect x="0px" y="0px" width="' .
-            $size . 'px" height="' .
-            $size . 'px" fill="' .
-            $this->background . '"/>' .
-            $this->pixels . '</svg>',
+            format: 'svg',
+            mimeType: 'image/svg+xml',
+            output: $minimizeImageSvg($imageSvg),
         );
+    }
+
+    /**
+     * @param array<int, string> $pixels
+     */
+    private function createSvg(int $size, string $background, array $pixels): string {
+        $background = $this->createSvgRect(
+            0,
+            0,
+            $size,
+            $size,
+            $background,
+        );
+
+        $pixels = implode(
+            separator: "\n\x20\x20",
+            array: $pixels,
+        );
+
+        return <<<XML
+            <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+            <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+            <svg version="1.1"
+                 width="{$size}px" height="{$size}px"
+                 viewBox="0 0 {$size} {$size}"
+                 xmlns="http://www.w3.org/2000/svg">
+
+              {$background}
+              {$pixels}
+            </svg>
+            XML;
+    }
+
+    private function createSvgRect(int $x, int $y, int $width, int $height, string $fill): string {
+        return <<<XML
+            <rect x="{$x}px" y="{$y}px" width="{$width}px" height="{$height}px" fill="{$fill}"/>
+            XML;
     }
 }
