@@ -9,8 +9,7 @@ use Usarise\Identicon\Exception\RuntimeException;
 final class Binary {
     public function __construct(
         private readonly Resolution $resolution,
-    ) {
-    }
+    ) {}
 
     /**
      * @return non-empty-array<int<1, 16>, int<0, 255>>
@@ -31,7 +30,7 @@ final class Binary {
     public function getBinStr(array $bytes): string {
         $resolution = $this->resolution->value;
 
-        $byteToBin = static fn (int $byte): string => str_pad(
+        $byteToBin = static fn(int $byte): string => str_pad(
             string: decbin(
                 $byte,
             ),

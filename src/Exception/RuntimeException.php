@@ -4,5 +4,4 @@ declare(strict_types=1);
 
 namespace Usarise\Identicon\Exception;
 
-final class RuntimeException extends \RuntimeException {
-}
+final class RuntimeException extends \RuntimeException {}

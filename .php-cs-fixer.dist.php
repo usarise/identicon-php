@@ -27,8 +27,8 @@ return
             '@PhpCsFixer' => true,
             '@PhpCsFixer:risky' => true,
             '@PHPUnit100Migration:risky' => true,
-            '@PER' => true,
-            '@PER:risky' => true,
+            '@PER-CS2.0' => true,
+            '@PER-CS2.0:risky' => true,
             'blank_line_before_statement' => [
                 'statements' => [
                     'continue',
@@ -43,9 +43,6 @@ return
             'curly_braces_position' => [
                 'classes_opening_brace' => 'same_line',
                 'functions_opening_brace' => 'same_line',
-            ],
-            'concat_space' => [
-                'spacing' => 'one',
             ],
             'comment_to_phpdoc' => ['ignored_tags' => ['fixme']],
             'date_time_immutable' => true,

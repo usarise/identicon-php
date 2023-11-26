@@ -11,9 +11,8 @@ final class Response implements \Stringable {
         public readonly string $format,
         public readonly string $mimeType,
         public readonly string $output,
-        public readonly object|string|null $image = null,
-    ) {
-    }
+        public readonly null|object|string $image = null,
+    ) {}
 
     public function save(string $path): void {
         if (file_put_contents(

@@ -12,8 +12,7 @@ final class CustomDriver implements ImageDriverInterface {
         return $this;
     }
 
-    public function drawPixel(int $x, int $y): void {
-    }
+    public function drawPixel(int $x, int $y): void {}
 
     public function response(): Response {
         return new Response(

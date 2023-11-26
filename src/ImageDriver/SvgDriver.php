@@ -39,7 +39,7 @@ final class SvgDriver implements ImageDriverInterface {
     }
 
     public function response(): Response {
-        $minimizeImageSvg = static fn (string $imageSvg): string => str_replace(
+        $minimizeImageSvg = static fn(string $imageSvg): string => str_replace(
             ["\n", "\x20\x20"],
             '',
             $imageSvg,

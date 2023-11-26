@@ -22,7 +22,7 @@ final class GdDriver implements ImageDriverInterface {
     }
 
     public function canvas(int $size, int $pixelSize, string $background, string $fill): self {
-        $color = static fn (\GdImage $image, string $hexColorCode): int => imagecolorallocate(
+        $color = static fn(\GdImage $image, string $hexColorCode): int => imagecolorallocate(
             $image,
             ...sscanf(
                 $hexColorCode,

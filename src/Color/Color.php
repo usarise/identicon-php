@@ -42,7 +42,7 @@ final class Color {
         $h = ($h1 | $h2);
 
         // https://processing.org/reference/map_.html
-        $map = static fn (int $value, int $vmin, int $vmax, int $dmin, int $dmax): float => (($value - $vmin) * ($dmax - $dmin)) / (($vmax - $vmin) + $dmin);
+        $map = static fn(int $value, int $vmin, int $vmax, int $dmin, int $dmax): float => (($value - $vmin) * ($dmax - $dmin)) / (($vmax - $vmin) + $dmin);
 
         $hue = $map($h, 0, 4095, 0, 360);
         $sat = $map($s, 0, 255, 0, 20);

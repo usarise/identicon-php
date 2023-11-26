@@ -10,8 +10,7 @@ final class Hsl {
         private readonly float $hue,
         private readonly float $sat,
         private readonly float $lum,
-    ) {
-    }
+    ) {}
 
     /**
      * @return non-empty-array<int<0, 2>, int<0, 255>>
