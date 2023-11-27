@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Usarise\Identicon;
 
-use Usarise\Identicon\Exception\RuntimeException;
+use Usarise\Identicon\Exception\{InvalidArgumentException, RuntimeException};
 
 final class Response implements \Stringable {
     public function __construct(
@@ -15,6 +15,18 @@ final class Response implements \Stringable {
     ) {}
 
     public function save(string $path): void {
+        if (pathinfo(
+            $path,
+            PATHINFO_EXTENSION,
+        ) !== $this->format) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'File extension must be "%s"',
+                    $this->format,
+                ),
+            );
+        }
+
         if (file_put_contents(
             $path,
             $this->output,

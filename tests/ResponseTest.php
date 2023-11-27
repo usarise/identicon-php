@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Usarise\IdenticonTests;
 
-use Usarise\Identicon\Exception\RuntimeException;
+use Usarise\Identicon\Exception\{InvalidArgumentException, RuntimeException};
 use Usarise\Identicon\Response;
 
 final class ResponseTest extends IdenticonTestCase {
@@ -40,8 +40,9 @@ final class ResponseTest extends IdenticonTestCase {
         );
     }
 
-    public function testSaveValueError(): void {
-        $this->expectException(\ValueError::class);
+    public function testSaveInvalidArgumentException(): void {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('File extension must be "tmp"');
 
         $response = new Response(
             'tmp',
@@ -49,15 +50,29 @@ final class ResponseTest extends IdenticonTestCase {
             'test write',
         );
 
+        $response->save(
+            self::TEMP_DIR . '/response.save',
+        );
+    }
+
+    public function testSaveValueError(): void {
+        $this->expectException(\ValueError::class);
+
+        $response = new Response(
+            '',
+            'text/plain',
+            'test write',
+        );
+
         $response->save('');
     }
 
-    public function testSaveException(): void {
+    public function testSaveRuntimeException(): void {
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('Failed write image to file');
 
         $response = new Response(
-            'tmp',
+            '',
             'text/plain',
             'test write',
         );
