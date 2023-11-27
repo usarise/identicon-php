@@ -16,7 +16,7 @@ final class GdDriver implements ImageDriverInterface {
     public function __construct() {
         if (!\extension_loaded('gd')) {
             throw new RuntimeException(
-                'The gd extension is not available',
+                'The "gd" extension is not available',
             );
         }
     }

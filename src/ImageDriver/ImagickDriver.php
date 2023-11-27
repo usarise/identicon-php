@@ -16,7 +16,7 @@ final class ImagickDriver implements ImageDriverInterface {
     public function __construct() {
         if (!\extension_loaded('imagick')) {
             throw new RuntimeException(
-                'The imagick extension is not available',
+                'The "imagick" extension is not available',
             );
         }
     }
