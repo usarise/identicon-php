@@ -28,21 +28,21 @@ final class Svg {
     public function image(bool $minimize = false): string {
         $size = $this->size;
 
-        $background = $this->rect(
-            x: 0,
-            y: 0,
-            width: $size,
-            height: $size,
-            fill: $this->background,
-        );
+        $rects = [
+            $this->rect(
+                x: 0,
+                y: 0,
+                width: $size,
+                height: $size,
+                fill: $this->background,
+            ),
+            ...$this->rects,
+        ];
 
-        $rects = $this->rects;
-        $rectSeparator = "\n\x20\x20";
-
-        $rects = $rects !== [] ? $rectSeparator . implode(
-            separator: $rectSeparator,
+        $rects = implode(
+            separator: "\n\x20\x20",
             array: $rects,
-        ) : '';
+        );
 
         $xmlSvg = <<<XML
             <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -52,7 +52,7 @@ final class Svg {
                  viewBox="0 0 {$size} {$size}"
                  xmlns="http://www.w3.org/2000/svg">
 
-              {$background}{$rects}
+              {$rects}
             </svg>
             XML;
 
