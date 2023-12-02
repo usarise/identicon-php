@@ -47,7 +47,7 @@ final class Identicon {
         $size = $this->size;
         $pixelSize = (int) floor($size / $this->resolution->value);
 
-        $canvas = $this->image->canvas(
+        $draw = $this->image->canvas(
             $size,
             $pixelSize,
             $color->background ?? Color::DEFAULT_BACKGROUND,
@@ -67,11 +67,11 @@ final class Identicon {
                 }
 
                 if ($pixels[$xBlock][$yBlock] === 1) {
-                    $canvas->drawPixel($x, $y);
+                    $draw->pixel($x, $y);
                 }
             }
         }
 
-        return $canvas->response();
+        return $draw->response();
     }
 }

@@ -5,14 +5,8 @@ declare(strict_types=1);
 namespace Usarise\Identicon\ImageDriver;
 
 use Usarise\Identicon\Exception\RuntimeException;
-use Usarise\Identicon\Response;
 
 final class ImagickDriver implements ImageDriverInterface {
-    private int $size;
-    private int $pixelSize;
-    private \ImagickDraw $image;
-    private \ImagickPixel $background;
-
     public function __construct() {
         if (!\extension_loaded('imagick')) {
             throw new RuntimeException(
@@ -21,54 +15,47 @@ final class ImagickDriver implements ImageDriverInterface {
         }
     }
 
-    public function canvas(int $size, int $pixelSize, string $background, string $fill): self {
-        $image = new \ImagickDraw();
-
-        $image->setFillColor(
-            new \ImagickPixel($fill),
-        );
-
-        $this->size = $size;
-        $this->pixelSize = $pixelSize - 1;
-        $this->image = $image;
-        $this->background = new \ImagickPixel($background);
-
-        return $this;
-    }
-
-    public function drawPixel(int $x, int $y): void {
-        $pixelSize = $this->pixelSize;
-
-        $this->image->rectangle(
-            $x,
-            $y,
-            $x + $pixelSize,
-            $y + $pixelSize,
+    public function canvas(
+        int $size,
+        int $pixelSize,
+        string $background,
+        string $fill,
+    ): ImageDrawInterface {
+        return new ImagickDraw(
+            pixelSize: $pixelSize - 1,
+            pixels: $this->pixels(
+                $fill,
+            ),
+            image: $this->image(
+                $size,
+                $background,
+            ),
         );
     }
 
-    public function response(): Response {
+    private function image(int $size, string $background): \Imagick {
         $imagick = new \Imagick();
 
         $imagick->newImage(
-            $this->size,
-            $this->size,
-            $this->background,
+            $size,
+            $size,
+            new \ImagickPixel(
+                $background,
+            ),
         );
 
-        $imagick->drawImage($this->image);
+        return $imagick;
+    }
 
-        $image = $imagick;
+    private function pixels(string $fill): \ImagickDraw {
+        $pixels = new \ImagickDraw();
 
-        $imagick->setImageFormat('png');
-        $imagick->setOption('png:compression-level', '9');
-        $imagick->stripImage();
-
-        return new Response(
-            format: 'png',
-            mimeType: 'image/png',
-            output: $imagick->getImagesBlob(),
-            image: $image,
+        $pixels->setFillColor(
+            new \ImagickPixel(
+                $fill,
+            ),
         );
+
+        return $pixels;
     }
 }

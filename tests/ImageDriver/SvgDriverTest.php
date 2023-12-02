@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Usarise\IdenticonTests\ImageDriver;
 
 use PHPUnit\Framework\TestCase;
-use Usarise\Identicon\ImageDriver\SvgDriver;
+use Usarise\Identicon\ImageDriver\{Svg, SvgDriver};
 use Usarise\Identicon\{Identicon, Resolution};
 
 final class SvgDriverTest extends TestCase {
@@ -60,8 +60,8 @@ final class SvgDriverTest extends TestCase {
             ),
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/default/test.image.svg'),
+        $this->assertInstanceOf(
+            Svg::class,
             $generate->image,
         );
     }

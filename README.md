@@ -204,7 +204,7 @@ Compressed image
 #### Uncompressed image
 `object`, `string`, `null`
 ```php
-$response->image // string
+$response->image // object
 ```
 #### Save file
 Allowed file extension only `$response->format`
