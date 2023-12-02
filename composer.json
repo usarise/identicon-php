@@ -15,9 +15,9 @@
     "require-dev": {
         "ergebnis/composer-normalize": "^2.39.0",
         "friendsofphp/php-cs-fixer": "^3.40.0",
-        "phpstan/phpstan": "^1.10.44",
-        "phpunit/phpunit": "^10.4.2",
-        "rector/rector": "^0.18.10"
+        "phpstan/phpstan": "^1.10.47",
+        "phpunit/phpunit": "^10.5.1",
+        "rector/rector": "^0.18.11"
     },
     "suggest": {
         "ext-gd": "to use the GD driver",
