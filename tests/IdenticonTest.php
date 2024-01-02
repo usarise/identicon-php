@@ -6,7 +6,7 @@ namespace Usarise\IdenticonTests;
 
 use Usarise\Identicon\Exception\InvalidArgumentException;
 use Usarise\Identicon\{Identicon, Resolution};
-use Usarise\IdenticonTests\ImageDriver\CustomDriver;
+use Usarise\IdenticonTests\Image\Custom\Canvas as CustomCanvas;
 
 final class IdenticonTest extends IdenticonTestCase {
     /**
@@ -14,21 +14,21 @@ final class IdenticonTest extends IdenticonTestCase {
      */
     private const IMAGE_SIZE = 420;
 
-    public function testCustomDriver(): void {
+    public function testCustomCanvas(): void {
         $identicon = new Identicon(
-            new CustomDriver(),
+            new CustomCanvas(),
             self::IMAGE_SIZE,
         );
 
         $this->assertInstanceOf(
-            CustomDriver::class,
-            $identicon->image,
+            CustomCanvas::class,
+            $identicon->canvas,
         );
     }
 
     public function testSize(): void {
         $identicon = new Identicon(
-            new CustomDriver(),
+            new CustomCanvas(),
             self::IMAGE_SIZE,
         );
 
@@ -38,7 +38,7 @@ final class IdenticonTest extends IdenticonTestCase {
         );
 
         $identicon = new Identicon(
-            image: new CustomDriver(),
+            canvas: new CustomCanvas(),
             size: 120,
         );
 
@@ -58,7 +58,7 @@ final class IdenticonTest extends IdenticonTestCase {
         );
 
         new Identicon(
-            image: new CustomDriver(),
+            canvas: new CustomCanvas(),
             size: 121,
         );
     }
@@ -75,7 +75,7 @@ final class IdenticonTest extends IdenticonTestCase {
         );
 
         new Identicon(
-            image: new CustomDriver(),
+            canvas: new CustomCanvas(),
             size: self::IMAGE_SIZE,
             resolution: $resolution,
         );
@@ -83,7 +83,7 @@ final class IdenticonTest extends IdenticonTestCase {
 
     public function testResolution(): void {
         $identicon = new Identicon(
-            new CustomDriver(),
+            new CustomCanvas(),
             self::IMAGE_SIZE,
         );
 
@@ -93,7 +93,7 @@ final class IdenticonTest extends IdenticonTestCase {
         );
 
         $identicon = new Identicon(
-            image: new CustomDriver(),
+            canvas: new CustomCanvas(),
             size: 128,
             resolution: Resolution::Huge,
         );
@@ -109,7 +109,7 @@ final class IdenticonTest extends IdenticonTestCase {
         $this->expectExceptionMessage('Invalid background format');
 
         $identicon = new Identicon(
-            new CustomDriver(),
+            new CustomCanvas(),
             self::IMAGE_SIZE,
         );
 
@@ -124,7 +124,7 @@ final class IdenticonTest extends IdenticonTestCase {
         $this->expectExceptionMessage('Invalid fill format');
 
         $identicon = new Identicon(
-            new CustomDriver(),
+            new CustomCanvas(),
             self::IMAGE_SIZE,
         );
 
@@ -136,7 +136,7 @@ final class IdenticonTest extends IdenticonTestCase {
 
     public function testGenerate(): void {
         $identicon = new Identicon(
-            new CustomDriver(),
+            new CustomCanvas(),
             self::IMAGE_SIZE,
         );
 

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Usarise\IdenticonTests\ImageDriver;
+namespace Usarise\IdenticonTests\Image;
 
 use PHPUnit\Framework\TestCase;
-use Usarise\Identicon\ImageDriver\Svg;
+use Usarise\Identicon\Image\Svg\Svg;
 
 final class SvgTest extends TestCase {
     /**

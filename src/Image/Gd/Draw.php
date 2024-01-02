@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Usarise\Identicon\ImageDriver;
+namespace Usarise\Identicon\Image\Gd;
 
+use Usarise\Identicon\Image\DrawInterface;
 use Usarise\Identicon\Response;
 
-final class GdDraw implements ImageDrawInterface {
+final class Draw implements DrawInterface {
     public function __construct(
         private readonly int $pixelSize,
         private readonly int $fill,

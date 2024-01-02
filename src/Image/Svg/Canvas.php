@@ -2,16 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Usarise\Identicon\ImageDriver;
+namespace Usarise\Identicon\Image\Svg;
 
-final class SvgDriver implements ImageDriverInterface {
-    public function canvas(
+use Usarise\Identicon\Image\{CanvasInterface, DrawInterface};
+
+final class Canvas implements CanvasInterface {
+    public function draw(
         int $size,
         int $pixelSize,
         string $background,
         string $fill,
-    ): ImageDrawInterface {
-        return new SvgDraw(
+    ): DrawInterface {
+        return new Draw(
             $pixelSize,
             $fill,
             new Svg(

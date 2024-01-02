@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Usarise\Identicon\ImageDriver;
+namespace Usarise\Identicon\Image;
 
-interface ImageDriverInterface {
-    public function canvas(
+interface CanvasInterface {
+    public function draw(
         int $size,
         int $pixelSize,
         string $background,
         string $fill,
-    ): ImageDrawInterface;
+    ): DrawInterface;
 }

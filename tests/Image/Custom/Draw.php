@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Usarise\IdenticonTests\ImageDriver;
+namespace Usarise\IdenticonTests\Image\Custom;
 
-use Usarise\Identicon\ImageDriver\ImageDrawInterface;
+use Usarise\Identicon\Image\DrawInterface;
 use Usarise\Identicon\Response;
 
-final class CustomDraw implements ImageDrawInterface {
+final class Draw implements DrawInterface {
     public function pixel(int $x, int $y): void {}
 
     public function response(): Response {

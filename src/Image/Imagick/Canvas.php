@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Usarise\Identicon\ImageDriver;
+namespace Usarise\Identicon\Image\Imagick;
 
 use Usarise\Identicon\Exception\RuntimeException;
+use Usarise\Identicon\Image\{CanvasInterface, DrawInterface};
 
-final class ImagickDriver implements ImageDriverInterface {
+final class Canvas implements CanvasInterface {
     public function __construct() {
         if (!\extension_loaded('imagick')) {
             throw new RuntimeException(
@@ -15,13 +16,13 @@ final class ImagickDriver implements ImageDriverInterface {
         }
     }
 
-    public function canvas(
+    public function draw(
         int $size,
         int $pixelSize,
         string $background,
         string $fill,
-    ): ImageDrawInterface {
-        return new ImagickDraw(
+    ): DrawInterface {
+        return new Draw(
             pixelSize: $pixelSize - 1,
             pixels: $this->pixels(
                 $fill,

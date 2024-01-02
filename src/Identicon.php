@@ -6,11 +6,11 @@ namespace Usarise\Identicon;
 
 use Usarise\Identicon\Color\Color;
 use Usarise\Identicon\Exception\InvalidArgumentException;
-use Usarise\Identicon\ImageDriver\ImageDriverInterface;
+use Usarise\Identicon\Image\CanvasInterface;
 
 final class Identicon {
     public function __construct(
-        public readonly ImageDriverInterface $image,
+        public readonly CanvasInterface $canvas,
         public readonly int $size,
         public readonly Resolution $resolution = Resolution::Medium,
     ) {
@@ -47,7 +47,7 @@ final class Identicon {
         $size = $this->size;
         $pixelSize = (int) floor($size / $this->resolution->value);
 
-        $draw = $this->image->canvas(
+        $draw = $this->canvas->draw(
             $size,
             $pixelSize,
             $color->background ?? Color::DEFAULT_BACKGROUND,

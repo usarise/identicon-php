@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Usarise\Identicon\ImageDriver;
+namespace Usarise\Identicon\Image;
 
 use Usarise\Identicon\Response;
 
-interface ImageDrawInterface {
+interface DrawInterface {
     public function pixel(int $x, int $y): void;
 
     public function response(): Response;

@@ -2,35 +2,35 @@
 
 declare(strict_types=1);
 
-namespace Usarise\IdenticonTests\ImageDriver;
+namespace Usarise\IdenticonTests\Image;
 
 use PHPUnit\Framework\TestCase;
-use Usarise\Identicon\ImageDriver\ImagickDriver;
+use Usarise\Identicon\Image\Gd\Canvas as GdCanvas;
 use Usarise\Identicon\{Identicon, Resolution};
 
-final class ImagickDriverTest extends TestCase {
+final class GdCanvasTest extends TestCase {
     /**
      * @var int
      */
     private const IMAGE_SIZE = 120;
 
     protected function setUp(): void {
-        if (!\extension_loaded('imagick')) {
+        if (!\extension_loaded('gd')) {
             $this->markTestSkipped(
-                'The imagick extension is not available.',
+                'The gd extension is not available.',
             );
         }
     }
 
     public function testImageDriverLoad(): void {
         $identicon = new Identicon(
-            new ImagickDriver(),
+            new GdCanvas(),
             self::IMAGE_SIZE,
         );
 
         $this->assertInstanceOf(
-            ImagickDriver::class,
-            $identicon->image,
+            GdCanvas::class,
+            $identicon->canvas,
         );
     }
 
@@ -38,7 +38,7 @@ final class ImagickDriverTest extends TestCase {
         $finfo = new \finfo(FILEINFO_MIME);
 
         $identicon = new Identicon(
-            new ImagickDriver(),
+            new GdCanvas(),
             self::IMAGE_SIZE,
         );
 
@@ -69,31 +69,31 @@ final class ImagickDriverTest extends TestCase {
         );
 
         $this->assertInstanceOf(
-            \Imagick::class,
+            \GdImage::class,
             $generate->image,
         );
     }
 
     public function testImageDefault(): void {
         $identicon = new Identicon(
-            new ImagickDriver(),
+            new GdCanvas(),
             self::IMAGE_SIZE,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/default/test.imagick.png'),
+            file_get_contents(__DIR__ . '/fixtures/default/test.gd.png'),
             (string) $identicon->generate('test'),
         );
     }
 
     public function testImageBackground(): void {
         $identicon = new Identicon(
-            new ImagickDriver(),
+            new GdCanvas(),
             self::IMAGE_SIZE,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.background.imagick.png'),
+            file_get_contents(__DIR__ . '/fixtures/color/test.background.gd.png'),
             (string) $identicon->generate(
                 'test',
                 '#f2f1f2',
@@ -103,12 +103,12 @@ final class ImagickDriverTest extends TestCase {
 
     public function testImageFill(): void {
         $identicon = new Identicon(
-            new ImagickDriver(),
+            new GdCanvas(),
             self::IMAGE_SIZE,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.fill.imagick.png'),
+            file_get_contents(__DIR__ . '/fixtures/color/test.fill.gd.png'),
             (string) $identicon->generate(
                 'test',
                 null,
@@ -119,12 +119,12 @@ final class ImagickDriverTest extends TestCase {
 
     public function testImageBackgroundFill(): void {
         $identicon = new Identicon(
-            new ImagickDriver(),
+            new GdCanvas(),
             self::IMAGE_SIZE,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.background.fill.imagick.png'),
+            file_get_contents(__DIR__ . '/fixtures/color/test.background.fill.gd.png'),
             (string) $identicon->generate(
                 'test',
                 '#f2f1f2',
@@ -135,65 +135,65 @@ final class ImagickDriverTest extends TestCase {
 
     public function testImageResolutionTiny(): void {
         $identicon = new Identicon(
-            image: new ImagickDriver(),
+            canvas: new GdCanvas(),
             size: self::IMAGE_SIZE,
             resolution: Resolution::Tiny,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.tiny.imagick.png'),
+            file_get_contents(__DIR__ . '/fixtures/resolution/r.tiny.gd.png'),
             (string) $identicon->generate('r'),
         );
     }
 
     public function testImageResolutionSmall(): void {
         $identicon = new Identicon(
-            image: new ImagickDriver(),
+            canvas: new GdCanvas(),
             size: self::IMAGE_SIZE,
             resolution: Resolution::Small,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.small.imagick.png'),
+            file_get_contents(__DIR__ . '/fixtures/resolution/r.small.gd.png'),
             (string) $identicon->generate('r'),
         );
     }
 
     public function testImageResolutionMedium(): void {
         $identicon = new Identicon(
-            image: new ImagickDriver(),
+            canvas: new GdCanvas(),
             size: self::IMAGE_SIZE,
             resolution: Resolution::Medium,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.medium.imagick.png'),
+            file_get_contents(__DIR__ . '/fixtures/resolution/r.medium.gd.png'),
             (string) $identicon->generate('r'),
         );
     }
 
     public function testImageResolutionLarge(): void {
         $identicon = new Identicon(
-            image: new ImagickDriver(),
+            canvas: new GdCanvas(),
             size: 126,
             resolution: Resolution::Large,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.large.imagick.png'),
+            file_get_contents(__DIR__ . '/fixtures/resolution/r.large.gd.png'),
             (string) $identicon->generate('r'),
         );
     }
 
     public function testImageResolutionHuge(): void {
         $identicon = new Identicon(
-            image: new ImagickDriver(),
+            canvas: new GdCanvas(),
             size: 128,
             resolution: Resolution::Huge,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.huge.imagick.png'),
+            file_get_contents(__DIR__ . '/fixtures/resolution/r.huge.gd.png'),
             (string) $identicon->generate('r'),
         );
     }

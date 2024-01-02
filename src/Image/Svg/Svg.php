@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Usarise\Identicon\ImageDriver;
+namespace Usarise\Identicon\Image\Svg;
 
 final class Svg {
     /**

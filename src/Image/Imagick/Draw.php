@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Usarise\Identicon\ImageDriver;
+namespace Usarise\Identicon\Image\Imagick;
 
+use Usarise\Identicon\Image\DrawInterface;
 use Usarise\Identicon\Response;
 
-final class ImagickDraw implements ImageDrawInterface {
+final class Draw implements DrawInterface {
     public function __construct(
         private readonly int $pixelSize,
         private readonly \ImagickDraw $pixels,

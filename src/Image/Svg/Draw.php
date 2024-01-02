@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Usarise\Identicon\ImageDriver;
+namespace Usarise\Identicon\Image\Svg;
 
+use Usarise\Identicon\Image\DrawInterface;
 use Usarise\Identicon\Response;
 
-final class SvgDraw implements ImageDrawInterface {
+final class Draw implements DrawInterface {
     public function __construct(
         private readonly int $pixelSize,
         private readonly string $fill,

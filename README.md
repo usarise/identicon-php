@@ -27,10 +27,10 @@ declare(strict_types=1);
 require_once __DIR__ . '/vendor/autoload.php';
 
 use Usarise\Identicon\Identicon;
-use Usarise\Identicon\ImageDriver\SvgDriver;
+use Usarise\Identicon\Image\Svg\Canvas as SvgCanvas;
 
 $identicon = new Identicon(
-    new SvgDriver(),
+    new SvgCanvas(),
     420,
 );
 
@@ -49,10 +49,10 @@ declare(strict_types=1);
 require_once __DIR__ . '/vendor/autoload.php';
 
 use Usarise\Identicon\Identicon;
-use Usarise\Identicon\ImageDriver\SvgDriver;
+use Usarise\Identicon\Image\Svg\Canvas as SvgCanvas;
 
 $identicon = new Identicon(
-    new SvgDriver(),
+    new SvgCanvas(),
     420,
 );
 
@@ -69,10 +69,10 @@ declare(strict_types=1);
 require_once __DIR__ . '/vendor/autoload.php';
 
 use Usarise\Identicon\Identicon;
-use Usarise\Identicon\ImageDriver\SvgDriver;
+use Usarise\Identicon\Image\Svg\Canvas as SvgCanvas;
 
 $identicon = new Identicon(
-    new SvgDriver(),
+    new SvgCanvas(),
     420,
 );
 
@@ -100,31 +100,33 @@ $data = sprintf(
 ## Usage advanched
 ### Construct
 ```php
-use Usarise\Identicon\ImageDriver\SvgDriver;
+use Usarise\Identicon\Image\Svg\Canvas as SvgCanvas;
 use Usarise\Identicon\{Identicon, Resolution};
 
 $identicon = new Identicon(
-    image: new SvgDriver(), // implementation Usarise\Identicon\ImageDriver\ImageDriverInterface
+    image: new SvgCanvas(), // implementation Usarise\Identicon\Image\CanvasInterface
     size: 420, // 420x420 pixels
     resolution: Resolution::Medium, // Resolution 10x10 (Default)
 );
 ```
-### Image Drivers
-Implementations `Usarise\Identicon\ImageDriver\ImageDriverInterface` from the box
+### Image Canvas
+Implementations `Usarise\Identicon\Image\CanvasInterface` from the box
 ```php
-use Usarise\Identicon\ImageDriver\{GdDriver, ImagickDriver, SvgDriver};
+use Usarise\Identicon\Image\Gd\Canvas as GdCanvas;
+use Usarise\Identicon\Image\Imagick\Canvas as ImagickCanvas;
+use Usarise\Identicon\Image\Svg\Canvas as SvgCanvas;
 ```
 #### Gd extension (GD Library)
 ```php
-new GdDriver()
+new GdCanvas()
 ```
 #### Imagick extension (ImageMagick)
 ```php
-new ImagickDriver()
+new ImagickCanvas()
 ```
 #### SVG
 ```php
-new SvgDriver()
+new SvgCanvas()
 ```
 ### Size
 Output image height and width

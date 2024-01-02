@@ -2,35 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Usarise\IdenticonTests\ImageDriver;
+namespace Usarise\IdenticonTests\Image;
 
 use PHPUnit\Framework\TestCase;
-use Usarise\Identicon\ImageDriver\GdDriver;
+use Usarise\Identicon\Image\Svg\{Canvas as SvgCanvas, Svg};
 use Usarise\Identicon\{Identicon, Resolution};
 
-final class GdDriverTest extends TestCase {
+final class SvgCanvasTest extends TestCase {
     /**
      * @var int
      */
     private const IMAGE_SIZE = 120;
 
-    protected function setUp(): void {
-        if (!\extension_loaded('gd')) {
-            $this->markTestSkipped(
-                'The gd extension is not available.',
-            );
-        }
-    }
-
     public function testImageDriverLoad(): void {
         $identicon = new Identicon(
-            new GdDriver(),
+            new SvgCanvas(),
             self::IMAGE_SIZE,
         );
 
         $this->assertInstanceOf(
-            GdDriver::class,
-            $identicon->image,
+            SvgCanvas::class,
+            $identicon->canvas,
         );
     }
 
@@ -38,62 +30,77 @@ final class GdDriverTest extends TestCase {
         $finfo = new \finfo(FILEINFO_MIME);
 
         $identicon = new Identicon(
-            new GdDriver(),
+            new SvgCanvas(),
             self::IMAGE_SIZE,
         );
 
         $generate = $identicon->generate('test');
 
         $this->assertEquals(
-            'png',
+            'svg',
             $generate->format,
         );
 
         $this->assertEquals(
-            'image/png',
+            'image/svg+xml',
             $generate->mimeType,
         );
 
         $this->assertEquals(
-            'image/png; charset=binary',
+            'image/svg+xml; charset=us-ascii',
             $finfo->buffer(
                 $generate->output,
             ),
         );
 
         $this->assertEquals(
-            'image/png; charset=binary',
+            'image/svg+xml; charset=us-ascii',
             $finfo->buffer(
                 (string) $generate,
             ),
         );
 
         $this->assertInstanceOf(
-            \GdImage::class,
+            Svg::class,
             $generate->image,
         );
     }
 
     public function testImageDefault(): void {
         $identicon = new Identicon(
-            new GdDriver(),
+            new SvgCanvas(),
             self::IMAGE_SIZE,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/default/test.gd.png'),
+            file_get_contents(__DIR__ . '/fixtures/default/test.svg'),
+            (string) $identicon->generate('test'),
+        );
+    }
+
+    public function testImagePixelsReset(): void {
+        $identicon = new Identicon(
+            new SvgCanvas(),
+            self::IMAGE_SIZE,
+        );
+
+        // fill pixels variable
+        $identicon->generate('test');
+
+        $this->assertEquals(
+            file_get_contents(__DIR__ . '/fixtures/default/test.svg'),
             (string) $identicon->generate('test'),
         );
     }
 
     public function testImageBackground(): void {
         $identicon = new Identicon(
-            new GdDriver(),
+            new SvgCanvas(),
             self::IMAGE_SIZE,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.background.gd.png'),
+            file_get_contents(__DIR__ . '/fixtures/color/test.background.svg'),
             (string) $identicon->generate(
                 'test',
                 '#f2f1f2',
@@ -103,12 +110,12 @@ final class GdDriverTest extends TestCase {
 
     public function testImageFill(): void {
         $identicon = new Identicon(
-            new GdDriver(),
+            new SvgCanvas(),
             self::IMAGE_SIZE,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.fill.gd.png'),
+            file_get_contents(__DIR__ . '/fixtures/color/test.fill.svg'),
             (string) $identicon->generate(
                 'test',
                 null,
@@ -119,12 +126,12 @@ final class GdDriverTest extends TestCase {
 
     public function testImageBackgroundFill(): void {
         $identicon = new Identicon(
-            new GdDriver(),
+            new SvgCanvas(),
             self::IMAGE_SIZE,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.background.fill.gd.png'),
+            file_get_contents(__DIR__ . '/fixtures/color/test.background.fill.svg'),
             (string) $identicon->generate(
                 'test',
                 '#f2f1f2',
@@ -135,65 +142,65 @@ final class GdDriverTest extends TestCase {
 
     public function testImageResolutionTiny(): void {
         $identicon = new Identicon(
-            image: new GdDriver(),
+            canvas: new SvgCanvas(),
             size: self::IMAGE_SIZE,
             resolution: Resolution::Tiny,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.tiny.gd.png'),
+            file_get_contents(__DIR__ . '/fixtures/resolution/r.tiny.svg'),
             (string) $identicon->generate('r'),
         );
     }
 
     public function testImageResolutionSmall(): void {
         $identicon = new Identicon(
-            image: new GdDriver(),
+            canvas: new SvgCanvas(),
             size: self::IMAGE_SIZE,
             resolution: Resolution::Small,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.small.gd.png'),
+            file_get_contents(__DIR__ . '/fixtures/resolution/r.small.svg'),
             (string) $identicon->generate('r'),
         );
     }
 
     public function testImageResolutionMedium(): void {
         $identicon = new Identicon(
-            image: new GdDriver(),
+            canvas: new SvgCanvas(),
             size: self::IMAGE_SIZE,
             resolution: Resolution::Medium,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.medium.gd.png'),
+            file_get_contents(__DIR__ . '/fixtures/resolution/r.medium.svg'),
             (string) $identicon->generate('r'),
         );
     }
 
     public function testImageResolutionLarge(): void {
         $identicon = new Identicon(
-            image: new GdDriver(),
+            canvas: new SvgCanvas(),
             size: 126,
             resolution: Resolution::Large,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.large.gd.png'),
+            file_get_contents(__DIR__ . '/fixtures/resolution/r.large.svg'),
             (string) $identicon->generate('r'),
         );
     }
 
     public function testImageResolutionHuge(): void {
         $identicon = new Identicon(
-            image: new GdDriver(),
+            canvas: new SvgCanvas(),
             size: 128,
             resolution: Resolution::Huge,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.huge.gd.png'),
+            file_get_contents(__DIR__ . '/fixtures/resolution/r.huge.svg'),
             (string) $identicon->generate('r'),
         );
     }

@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Usarise\Identicon\ImageDriver;
+namespace Usarise\Identicon\Image\Gd;
 
 use Usarise\Identicon\Color\Color;
 use Usarise\Identicon\Exception\RuntimeException;
+use Usarise\Identicon\Image\{CanvasInterface, DrawInterface};
 
-final class GdDriver implements ImageDriverInterface {
+final class Canvas implements CanvasInterface {
     public function __construct() {
         if (!\extension_loaded('gd')) {
             throw new RuntimeException(
@@ -16,18 +17,18 @@ final class GdDriver implements ImageDriverInterface {
         }
     }
 
-    public function canvas(
+    public function draw(
         int $size,
         int $pixelSize,
         string $background,
         string $fill,
-    ): ImageDrawInterface {
+    ): DrawInterface {
         $image = imagecreate(
             width: $size,
             height: $size,
         );
 
-        return new GdDraw(
+        return new Draw(
             pixelSize: $pixelSize - 1,
             fill: $this->color(
                 $image,
