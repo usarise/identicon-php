@@ -69,6 +69,13 @@ final class ColorTest extends TestCase {
         );
     }
 
+    public function testGenerateException(): void {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Bytes array length must be a minimum of 4 elements');
+
+        (new Color(null, null))->generate([0]);
+    }
+
     public function testGenerate(): void {
         $color = new Color(null, null);
 

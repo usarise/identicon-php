@@ -34,6 +34,10 @@ final class Color {
      * @param non-empty-array<int, int<0, 255>> $bytes
      */
     public function generate(array $bytes): string {
+        if (\count($bytes) < 4) {
+            throw new InvalidArgumentException('Bytes array length must be a minimum of 4 elements');
+        }
+
         // Use last 28 bits to determine HSL values.
         // source - https://github.com/dgraham/identicon/blob/v0.2.1/src/lib.rs#L28
         [$h0, $h2, $s, $l] = \array_slice($bytes, -4);
