@@ -14,6 +14,12 @@ final class Identicon {
         public readonly int $size,
         public readonly Resolution $resolution = Resolution::Medium,
     ) {
+        if ($size <= 0) {
+            throw new InvalidArgumentException(
+                'Size cannot be negative or zero',
+            );
+        }
+
         $resolutionValue = $this->resolution->value;
 
         if (($size % $resolutionValue) !== 0) {

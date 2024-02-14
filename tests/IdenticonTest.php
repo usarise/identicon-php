@@ -26,6 +26,45 @@ final class IdenticonTest extends IdenticonTestCase {
         );
     }
 
+    public function testBadSizeMultipleOf(): void {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            sprintf(
+                'Size must be a multiple of %s',
+                Resolution::Medium->value,
+            ),
+        );
+
+        new Identicon(
+            canvas: new CustomCanvas(),
+            size: 121,
+        );
+    }
+
+    public function testBadSizeNegative(): void {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Size cannot be negative or zero',
+        );
+
+        new Identicon(
+            canvas: new CustomCanvas(),
+            size: -120,
+        );
+    }
+
+    public function testBadSizeZero(): void {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Size cannot be negative or zero',
+        );
+
+        new Identicon(
+            canvas: new CustomCanvas(),
+            size: 0,
+        );
+    }
+
     public function testSize(): void {
         $identicon = new Identicon(
             new CustomCanvas(),
@@ -45,21 +84,6 @@ final class IdenticonTest extends IdenticonTestCase {
         $this->assertEquals(
             120,
             $identicon->size,
-        );
-    }
-
-    public function testBadSize(): void {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(
-            sprintf(
-                'Size must be a multiple of %s',
-                Resolution::Medium->value,
-            ),
-        );
-
-        new Identicon(
-            canvas: new CustomCanvas(),
-            size: 121,
         );
     }
 
