@@ -18,8 +18,8 @@ final class Color {
     public const FORMAT = '#%02x%02x%02x';
 
     public function __construct(
-        public readonly ?string $background,
-        public readonly ?string $fill,
+        public readonly ?string $background = null,
+        public readonly ?string $fill = null,
     ) {
         if ($background !== null && !$this->formatValidation($background)) {
             throw new InvalidArgumentException('Invalid background format');

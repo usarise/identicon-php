@@ -25,7 +25,7 @@ final class ColorTest extends TestCase {
     }
 
     public function testConstruct(): void {
-        $color = new Color(null, null);
+        $color = new Color();
 
         $this->assertNull(
             $color->background,
@@ -55,7 +55,6 @@ final class ColorTest extends TestCase {
 
         new Color(
             background: 'invalid',
-            fill: null,
         );
     }
 
@@ -64,7 +63,6 @@ final class ColorTest extends TestCase {
         $this->expectExceptionMessage('Invalid fill format');
 
         new Color(
-            background: null,
             fill: 'invalid',
         );
     }
@@ -73,11 +71,11 @@ final class ColorTest extends TestCase {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Bytes array length must be a minimum of 4 elements');
 
-        (new Color(null, null))->generate([0]);
+        (new Color())->generate([0]);
     }
 
     public function testGenerate(): void {
-        $color = new Color(null, null);
+        $color = new Color();
 
         $this->assertEquals(
             '#55c878',
@@ -91,7 +89,7 @@ final class ColorTest extends TestCase {
     }
 
     public function testFormatValidation(): void {
-        $color = new Color(null, null);
+        $color = new Color();
 
         $this->assertTrue(
             $color->formatValidation('#F0F0F0'),
@@ -103,7 +101,7 @@ final class ColorTest extends TestCase {
     }
 
     public function testFormatValidationFalse(): void {
-        $color = new Color(null, null);
+        $color = new Color();
 
         $this->assertFalse(
             $color->formatValidation('#000'),
