@@ -20,12 +20,12 @@ final class Canvas implements CanvasInterface {
         int $size,
         int $pixelSize,
         string $background,
-        string $fill,
+        string $foreground,
     ): DrawInterface {
         return new Draw(
             pixelSize: $pixelSize - 1,
             pixels: $this->pixels(
-                $fill,
+                $foreground,
             ),
             image: $this->image(
                 $size,
@@ -48,12 +48,12 @@ final class Canvas implements CanvasInterface {
         return $imagick;
     }
 
-    private function pixels(string $fill): \ImagickDraw {
+    private function pixels(string $foreground): \ImagickDraw {
         $pixels = new \ImagickDraw();
 
         $pixels->setFillColor(
             new \ImagickPixel(
-                $fill,
+                $foreground,
             ),
         );
 

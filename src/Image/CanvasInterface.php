@@ -9,6 +9,6 @@ interface CanvasInterface {
         int $size,
         int $pixelSize,
         string $background,
-        string $fill,
+        string $foreground,
     ): DrawInterface;
 }

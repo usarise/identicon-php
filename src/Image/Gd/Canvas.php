@@ -21,7 +21,7 @@ final class Canvas implements CanvasInterface {
         int $size,
         int $pixelSize,
         string $background,
-        string $fill,
+        string $foreground,
     ): DrawInterface {
         $image = imagecreate(
             width: $size,
@@ -30,9 +30,9 @@ final class Canvas implements CanvasInterface {
 
         return new Draw(
             pixelSize: $pixelSize - 1,
-            fill: $this->color(
+            foreground: $this->color(
                 $image,
-                $fill,
+                $foreground,
             ),
             image: $this->image(
                 $image,

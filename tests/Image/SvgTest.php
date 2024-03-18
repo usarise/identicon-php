@@ -74,7 +74,7 @@ final class SvgTest extends TestCase {
             y: 30,
             width: 30,
             height: 30,
-            fill: '#55c878',
+            foreground: '#55c878',
         );
 
         $this->assertEquals(

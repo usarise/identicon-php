@@ -108,14 +108,14 @@ final class SvgCanvasTest extends TestCase {
         );
     }
 
-    public function testImageFill(): void {
+    public function testImageForeground(): void {
         $identicon = new Identicon(
             new SvgCanvas(),
             self::IMAGE_SIZE,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.fill.svg'),
+            file_get_contents(__DIR__ . '/fixtures/color/test.foreground.svg'),
             (string) $identicon->generate(
                 'test',
                 null,
@@ -124,14 +124,14 @@ final class SvgCanvasTest extends TestCase {
         );
     }
 
-    public function testImageBackgroundFill(): void {
+    public function testImageBackgroundForeground(): void {
         $identicon = new Identicon(
             new SvgCanvas(),
             self::IMAGE_SIZE,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.background.fill.svg'),
+            file_get_contents(__DIR__ . '/fixtures/color/test.background.foreground.svg'),
             (string) $identicon->generate(
                 'test',
                 '#f2f1f2',

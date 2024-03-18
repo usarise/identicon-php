@@ -10,7 +10,7 @@ use Usarise\Identicon\Response;
 final class Draw implements DrawInterface {
     public function __construct(
         private readonly int $pixelSize,
-        private readonly int $fill,
+        private readonly int $foreground,
         private readonly \GdImage $image,
     ) {}
 
@@ -23,7 +23,7 @@ final class Draw implements DrawInterface {
             $y,
             $x + $pixelSize,
             $y + $pixelSize,
-            $this->fill,
+            $this->foreground,
         );
     }
 

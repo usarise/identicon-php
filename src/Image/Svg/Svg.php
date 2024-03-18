@@ -15,13 +15,13 @@ final class Svg {
         public readonly string $background,
     ) {}
 
-    public function drawRect(int $x, int $y, int $width, int $height, string $fill): void {
+    public function drawRect(int $x, int $y, int $width, int $height, string $foreground): void {
         $this->rects[] = $this->rect(
             $x,
             $y,
             $width,
             $height,
-            $fill,
+            $foreground,
         );
     }
 
@@ -34,7 +34,7 @@ final class Svg {
                 y: 0,
                 width: $size,
                 height: $size,
-                fill: $this->background,
+                foreground: $this->background,
             ),
             ...$this->rects,
         ];
@@ -67,9 +67,9 @@ final class Svg {
         );
     }
 
-    private function rect(int $x, int $y, int $width, int $height, string $fill): string {
+    private function rect(int $x, int $y, int $width, int $height, string $foreground): string {
         return <<<XML
-            <rect x="{$x}px" y="{$y}px" width="{$width}px" height="{$height}px" fill="{$fill}"/>
+            <rect x="{$x}px" y="{$y}px" width="{$width}px" height="{$height}px" fill="{$foreground}"/>
             XML;
     }
 }

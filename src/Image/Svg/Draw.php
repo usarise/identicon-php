@@ -10,7 +10,7 @@ use Usarise\Identicon\Response;
 final class Draw implements DrawInterface {
     public function __construct(
         private readonly int $pixelSize,
-        private readonly string $fill,
+        private readonly string $foreground,
         private readonly Svg $svg,
     ) {}
 
@@ -22,7 +22,7 @@ final class Draw implements DrawInterface {
             y: $y,
             width: $pixelSize,
             height: $pixelSize,
-            fill: $this->fill,
+            foreground: $this->foreground,
         );
     }
 

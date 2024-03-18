@@ -31,7 +31,7 @@ final class ColorTest extends TestCase {
             $color->background,
         );
         $this->assertNull(
-            $color->fill,
+            $color->foreground,
         );
 
         $color = new Color(
@@ -45,7 +45,7 @@ final class ColorTest extends TestCase {
         );
         $this->assertEquals(
             '#55c878',
-            $color->fill,
+            $color->foreground,
         );
     }
 
@@ -58,12 +58,12 @@ final class ColorTest extends TestCase {
         );
     }
 
-    public function testFillException(): void {
+    public function testForegroundException(): void {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Invalid fill format');
+        $this->expectExceptionMessage('Invalid foreground format');
 
         new Color(
-            fill: 'invalid',
+            foreground: 'invalid',
         );
     }
 

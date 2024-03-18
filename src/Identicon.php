@@ -32,10 +32,10 @@ final class Identicon {
         }
     }
 
-    public function generate(string $string, ?string $background = null, ?string $fill = null): Response {
+    public function generate(string $string, ?string $background = null, ?string $foreground = null): Response {
         $color = new Color(
             $background,
-            $fill,
+            $foreground,
         );
 
         $binary = new Binary(
@@ -57,7 +57,7 @@ final class Identicon {
             $size,
             $pixelSize,
             $color->background ?? Color::DEFAULT_BACKGROUND,
-            $color->fill ?? $color->generate($bytes),
+            $color->foreground ?? $color->generate($bytes),
         );
 
         foreach (range(0, $size, $pixelSize) as $x) {

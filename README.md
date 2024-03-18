@@ -172,15 +172,15 @@ Hex color codes
 ```php
 $response = $identicon->generate(string: 'test', background: '#f2f1f2')
 ```
-#### Fill
+#### Foreground
 Hex color codes
 ```php
-$response = $identicon->generate(string: 'test', fill: '#84c7b5')
+$response = $identicon->generate(string: 'test', foreground: '#84c7b5')
 ```
-#### Background and Fill
+#### Background and Foreground
 Hex color codes
 ```php
-$response = $identicon->generate(string: 'test', background: '#f2f1f2', fill: '#84c7b5')
+$response = $identicon->generate(string: 'test', background: '#f2f1f2', foreground: '#84c7b5')
 ```
 ### Response
 #### Format

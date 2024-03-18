@@ -101,14 +101,14 @@ final class GdCanvasTest extends TestCase {
         );
     }
 
-    public function testImageFill(): void {
+    public function testImageForeground(): void {
         $identicon = new Identicon(
             new GdCanvas(),
             self::IMAGE_SIZE,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.fill.gd.png'),
+            file_get_contents(__DIR__ . '/fixtures/color/test.foreground.gd.png'),
             (string) $identicon->generate(
                 'test',
                 null,
@@ -117,14 +117,14 @@ final class GdCanvasTest extends TestCase {
         );
     }
 
-    public function testImageBackgroundFill(): void {
+    public function testImageBackgroundForeground(): void {
         $identicon = new Identicon(
             new GdCanvas(),
             self::IMAGE_SIZE,
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.background.fill.gd.png'),
+            file_get_contents(__DIR__ . '/fixtures/color/test.background.foreground.gd.png'),
             (string) $identicon->generate(
                 'test',
                 '#f2f1f2',

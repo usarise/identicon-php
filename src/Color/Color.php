@@ -19,14 +19,14 @@ final class Color {
 
     public function __construct(
         public readonly ?string $background = null,
-        public readonly ?string $fill = null,
+        public readonly ?string $foreground = null,
     ) {
         if ($background !== null && !$this->formatValidation($background)) {
             throw new InvalidArgumentException('Invalid background format');
         }
 
-        if ($fill !== null && !$this->formatValidation($fill)) {
-            throw new InvalidArgumentException('Invalid fill format');
+        if ($foreground !== null && !$this->formatValidation($foreground)) {
+            throw new InvalidArgumentException('Invalid foreground format');
         }
     }
 

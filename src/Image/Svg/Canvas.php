@@ -11,11 +11,11 @@ final class Canvas implements CanvasInterface {
         int $size,
         int $pixelSize,
         string $background,
-        string $fill,
+        string $foreground,
     ): DrawInterface {
         return new Draw(
             $pixelSize,
-            $fill,
+            $foreground,
             new Svg(
                 $size,
                 $background,

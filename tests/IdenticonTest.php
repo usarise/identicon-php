@@ -143,9 +143,9 @@ final class IdenticonTest extends IdenticonTestCase {
         );
     }
 
-    public function testFillException(): void {
+    public function testForegroundException(): void {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Invalid fill format');
+        $this->expectExceptionMessage('Invalid foreground format');
 
         $identicon = new Identicon(
             new CustomCanvas(),
@@ -154,7 +154,7 @@ final class IdenticonTest extends IdenticonTestCase {
 
         $identicon->generate(
             string: 'test',
-            fill: 'invalid',
+            foreground: 'invalid',
         );
     }
 
