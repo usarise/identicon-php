@@ -29,15 +29,15 @@ final class Canvas implements CanvasInterface {
         );
 
         return new Draw(
-            image: $this->image(
+            $this->image(
                 $image,
                 $background,
             ),
-            foreground: $this->color(
+            $this->foreground(
                 $image,
                 $foreground,
             ),
-            pixelSize: $pixelSize - 1,
+            $pixelSize - 1,
         );
     }
 
@@ -55,7 +55,7 @@ final class Canvas implements CanvasInterface {
         return $image;
     }
 
-    private function color(\GdImage $image, string $hexColorCode): int {
+    private function foreground(\GdImage $image, string $hexColorCode): int {
         return imagecolorallocate(
             $image,
             ...sscanf(

@@ -23,14 +23,14 @@ final class Canvas implements CanvasInterface {
         string $foreground,
     ): DrawInterface {
         return new Draw(
-            pixelSize: $pixelSize - 1,
-            pixels: $this->pixels(
-                $foreground,
-            ),
-            image: $this->image(
+            $this->image(
                 $size,
                 $background,
             ),
+            $this->pixels(
+                $foreground,
+            ),
+            $pixelSize - 1,
         );
     }
 
