@@ -29,15 +29,15 @@ final class Canvas implements CanvasInterface {
         );
 
         return new Draw(
-            pixelSize: $pixelSize - 1,
-            foreground: $this->color(
-                $image,
-                $foreground,
-            ),
             image: $this->image(
                 $image,
                 $background,
             ),
+            foreground: $this->color(
+                $image,
+                $foreground,
+            ),
+            pixelSize: $pixelSize - 1,
         );
     }
 

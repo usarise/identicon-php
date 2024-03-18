@@ -9,9 +9,9 @@ use Usarise\Identicon\Response;
 
 final class Draw implements DrawInterface {
     public function __construct(
-        private readonly int $pixelSize,
-        private readonly int $foreground,
         private readonly \GdImage $image,
+        private readonly int $foreground,
+        private readonly int $pixelSize,
     ) {}
 
     public function pixel(int $x, int $y): void {
