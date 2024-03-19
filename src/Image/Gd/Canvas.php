@@ -33,7 +33,7 @@ final class Canvas implements CanvasInterface {
                 $image,
                 $background,
             ),
-            $this->foreground(
+            $this->color(
                 $image,
                 $foreground,
             ),
@@ -55,7 +55,7 @@ final class Canvas implements CanvasInterface {
         return $image;
     }
 
-    private function foreground(\GdImage $image, string $hexColorCode): int {
+    private function color(\GdImage $image, string $hexColorCode): int {
         return imagecolorallocate(
             $image,
             ...sscanf(
