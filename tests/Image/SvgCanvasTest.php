@@ -78,13 +78,13 @@ final class SvgCanvasTest extends TestCase {
         );
     }
 
-    public function testImagePixelsReset(): void {
+    public function testImageRectsReset(): void {
         $identicon = new Identicon(
             new SvgCanvas(),
             self::IMAGE_SIZE,
         );
 
-        // fill pixels variable
+        // rects variable
         $identicon->generate('test');
 
         $this->assertEquals(

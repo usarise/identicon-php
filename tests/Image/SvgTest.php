@@ -14,6 +14,11 @@ final class SvgTest extends TestCase {
     public const BACKGROUND = '#F0F0F0';
 
     /**
+     * @var string
+     */
+    public const FOREGROUND = '#55c878';
+
+    /**
      * @var int
      */
     private const SIZE = 420;
@@ -22,6 +27,7 @@ final class SvgTest extends TestCase {
         $svg = new Svg(
             self::SIZE,
             self::BACKGROUND,
+            self::FOREGROUND,
         );
         $this->assertEquals(
             420,
@@ -31,10 +37,15 @@ final class SvgTest extends TestCase {
             '#F0F0F0',
             $svg->background,
         );
+        $this->assertEquals(
+            '#55c878',
+            $svg->foreground,
+        );
 
         $svg = new Svg(
             120,
             '#f2f1f2',
+            '#84c7b5',
         );
         $this->assertEquals(
             120,
@@ -44,29 +55,35 @@ final class SvgTest extends TestCase {
             '#f2f1f2',
             $svg->background,
         );
-    }
-
-    public function testImage(): void {
-        $svg = new Svg(
-            self::SIZE,
-            self::BACKGROUND,
-        );
-
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/svg/image.svg'),
-            $svg->image(),
-        );
-
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/svg/image.minimize.svg'),
-            $svg->image(minimize: true),
+            '#84c7b5',
+            $svg->foreground,
         );
     }
 
-    public function testDrawRectImage(): void {
+    public function testGenerate(): void {
         $svg = new Svg(
             self::SIZE,
             self::BACKGROUND,
+            self::FOREGROUND,
+        );
+
+        $this->assertEquals(
+            file_get_contents(__DIR__ . '/fixtures/svg/generate.svg'),
+            $svg->generate(),
+        );
+
+        $this->assertEquals(
+            file_get_contents(__DIR__ . '/fixtures/svg/generate.minimize.svg'),
+            $svg->generate(minimize: true),
+        );
+    }
+
+    public function testGenerateDrawRect(): void {
+        $svg = new Svg(
+            self::SIZE,
+            self::BACKGROUND,
+            self::FOREGROUND,
         );
 
         $svg->drawRect(
@@ -74,17 +91,16 @@ final class SvgTest extends TestCase {
             y: 30,
             width: 30,
             height: 30,
-            foreground: '#55c878',
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/svg/image.rect.svg'),
-            $svg->image(),
+            file_get_contents(__DIR__ . '/fixtures/svg/generate.rect.svg'),
+            $svg->generate(),
         );
 
         $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/svg/image.rect.minimize.svg'),
-            $svg->image(minimize: true),
+            file_get_contents(__DIR__ . '/fixtures/svg/generate.rect.minimize.svg'),
+            $svg->generate(minimize: true),
         );
     }
 }
