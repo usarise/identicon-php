@@ -13,35 +13,24 @@ final class Svg {
     public function __construct(
         public readonly int $size,
         public readonly string $background,
+        public readonly string $foreground,
     ) {}
 
-    public function drawRect(int $x, int $y, int $width, int $height, string $foreground): void {
+    public function drawRect(int $x, int $y, int $width, int $height): void {
         $this->rects[] = $this->rect(
             $x,
             $y,
             $width,
             $height,
-            $foreground,
         );
     }
 
     public function image(bool $minimize = false): string {
         $size = $this->size;
 
-        $rects = [
-            $this->rect(
-                x: 0,
-                y: 0,
-                width: $size,
-                height: $size,
-                foreground: $this->background,
-            ),
-            ...$this->rects,
-        ];
-
         $rects = implode(
-            separator: "\n\x20\x20",
-            array: $rects,
+            separator: "\n\x20\x20\x20\x20",
+            array: $this->rects,
         );
 
         $xmlSvg = <<<XML
@@ -52,7 +41,10 @@ final class Svg {
                  viewBox="0 0 {$size} {$size}"
                  xmlns="http://www.w3.org/2000/svg">
 
-              {$rects}
+              <rect width="{$size}px" height="{$size}px" fill="{$this->background}"/>
+              <g fill="{$this->foreground}">
+                {$rects}
+              </g>
             </svg>
             XML;
 
@@ -67,9 +59,9 @@ final class Svg {
         );
     }
 
-    private function rect(int $x, int $y, int $width, int $height, string $foreground): string {
+    private function rect(int $x, int $y, int $width, int $height): string {
         return <<<XML
-            <rect x="{$x}px" y="{$y}px" width="{$width}px" height="{$height}px" fill="{$foreground}"/>
+            <rect x="{$x}px" y="{$y}px" width="{$width}px" height="{$height}px"/>
             XML;
     }
 }

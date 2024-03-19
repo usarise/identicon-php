@@ -5,5 +5,8 @@
      viewBox="0 0 420 420"
      xmlns="http://www.w3.org/2000/svg">
 
-  <rect x="0px" y="0px" width="420px" height="420px" fill="#F0F0F0"/>
+  <rect width="420px" height="420px" fill="#F0F0F0"/>
+  <g fill="#55c878">
+    
+  </g>
 </svg>

@@ -14,12 +14,12 @@ final class Canvas implements CanvasInterface {
         string $foreground,
     ): DrawInterface {
         return new Draw(
-            $pixelSize,
-            $foreground,
             new Svg(
                 $size,
                 $background,
+                $foreground,
             ),
+            $pixelSize,
         );
     }
 }
