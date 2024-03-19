@@ -28,7 +28,7 @@ final class Draw implements DrawInterface {
         return new Response(
             format: 'svg',
             mimeType: 'image/svg+xml',
-            output: $this->svg->image(minimize: true),
+            output: $this->svg->generate(minimize: true),
             image: $this->svg,
         );
     }

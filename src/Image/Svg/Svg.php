@@ -25,7 +25,7 @@ final class Svg {
         );
     }
 
-    public function image(bool $minimize = false): string {
+    public function generate(bool $minimize = false): string {
         $size = $this->size;
 
         $rects = implode(
