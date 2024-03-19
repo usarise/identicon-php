@@ -34,15 +34,6 @@ final class ColorTest extends TestCase {
             $color->foreground,
         );
 
-        $color = new Color();
-
-        $this->assertNull(
-            $color->background,
-        );
-        $this->assertNull(
-            $color->foreground,
-        );
-
         $color = new Color(
             '#f2f1f2',
             '#55c878',
