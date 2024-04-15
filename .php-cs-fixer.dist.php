@@ -104,7 +104,6 @@ return
             'phpdoc_types_order' => ['null_adjustment' => 'always_last', 'sort_algorithm' => 'none'],
             'return_assignment' => false,
             'single_line_comment_style' => ['comment_types' => ['hash']],
-            'trailing_comma_in_multiline' => ['after_heredoc' => true, 'elements' => ['arrays', 'arguments', 'parameters']],
             'yoda_style' => ['equal' => false, 'identical' => false, 'less_and_greater' => false],
         ])
 ;
