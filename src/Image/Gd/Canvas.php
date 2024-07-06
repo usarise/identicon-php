@@ -56,12 +56,20 @@ final class Canvas implements CanvasInterface {
     }
 
     private function color(\GdImage $image, string $hexColorCode): int {
-        return imagecolorallocate(
+        $color = imagecolorallocate(
             $image,
             ...sscanf(
                 $hexColorCode,
                 Color::FORMAT,
             ),
         );
+
+        if ($color === false) {
+            throw new RuntimeException(
+                'Color allocation failed',
+            );
+        }
+
+        return $color;
     }
 }

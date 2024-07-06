@@ -53,7 +53,7 @@ final class Binary {
     }
 
     /**
-     * @return array<int, non-empty-array<int, int<0, 1>>>
+     * @return non-empty-array<int, non-empty-array<int, int>>
      */
     public function getPixels(string $binStr): array {
         $binaryList = str_split($binStr);
