@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
-use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 
 return RectorConfig::configure()
     ->withCache(
@@ -16,9 +15,6 @@ return RectorConfig::configure()
     ])
     ->withSkip([
         NewlineAfterStatementRector::class,
-        ChangeAndIfToEarlyReturnRector::class => [
-            __DIR__ . '/src/Color/Color.php',
-        ],
     ])
     ->withPreparedSets(
         deadCode: true,
