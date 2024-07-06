@@ -52,12 +52,15 @@ final class Color {
         $sat = $map($s, 0, 255, 0, 20);
         $lum = $map($l, 0, 255, 0, 20);
 
-        $hsl = new Hsl($hue, 65.0 - $sat, 75.0 - $lum);
-        $rgb = $hsl->rgb();
+        $hsl = new Hsl(
+            $hue,
+            65.0 - $sat,
+            75.0 - $lum,
+        );
 
         return sprintf(
             self::FORMAT,
-            ...$rgb,
+            ...$hsl->rgb(),
         );
     }
 
