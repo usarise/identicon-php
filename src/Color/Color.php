@@ -92,6 +92,7 @@ final class Color {
         foreach ($chars as $key => $char) {
             if ($key === 0) {
                 $cssHexColor = $char;
+
                 continue;
             }
 
