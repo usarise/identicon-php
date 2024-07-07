@@ -64,16 +64,16 @@ final class Color {
         );
     }
 
-    public function formatValidation(string $hexColorCode): bool {
-        if (\strlen($hexColorCode) !== 7) {
+    public function formatValidation(string $cssHexColor): bool {
+        if (\strlen($cssHexColor) !== 7) {
             return false;
         }
 
-        $hexDigit = ltrim(
-            string: $hexColorCode,
+        $hexDigits = ltrim(
+            string: $cssHexColor,
             characters: '#',
         );
 
-        return ctype_xdigit($hexDigit) && \strlen($hexDigit) === 6;
+        return ctype_xdigit($hexDigits) && \strlen($hexDigits) === 6;
     }
 }

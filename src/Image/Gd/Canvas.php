@@ -55,11 +55,11 @@ final class Canvas implements CanvasInterface {
         return $image;
     }
 
-    private function color(\GdImage $image, string $hexColorCode): int {
+    private function color(\GdImage $image, string $cssHexColor): int {
         $color = imagecolorallocate(
             $image,
             ...sscanf(
-                $hexColorCode,
+                $cssHexColor,
                 Color::FORMAT,
             ),
         );
