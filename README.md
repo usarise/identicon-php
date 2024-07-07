@@ -168,17 +168,17 @@ Username, id, email, ip, etc
 $response = $identicon->generate(string: 'test')
 ```
 #### Background
-CSS 6-digit hex color
+CSS 6-digit or 3-digit hex color
 ```php
 $response = $identicon->generate(string: 'test', background: '#f2f1f2')
 ```
 #### Foreground
-CSS 6-digit hex color
+CSS 6-digit or 3-digit hex color
 ```php
 $response = $identicon->generate(string: 'test', foreground: '#84c7b5')
 ```
 #### Background and Foreground
-CSS 6-digit hex color
+CSS 6-digit or 3-digit hex color
 ```php
 $response = $identicon->generate(string: 'test', background: '#f2f1f2', foreground: '#84c7b5')
 ```

@@ -21,6 +21,9 @@ final class Color {
         public readonly ?string $background = null,
         public readonly ?string $foreground = null,
     ) {
+        $background = $this->formatNormalize($background);
+        $foreground = $this->formatNormalize($foreground);
+
         if ($background !== null && !$this->formatValidation($background)) {
             throw new InvalidArgumentException('Invalid background format');
         }
@@ -75,5 +78,26 @@ final class Color {
         );
 
         return ctype_xdigit($hexDigits) && \strlen($hexDigits) === 6;
+    }
+
+    private function formatNormalize(?string $cssHexColor): ?string {
+        if ($cssHexColor === null || \strlen($cssHexColor) !== 4) {
+            return $cssHexColor;
+        }
+
+        $chars = str_split(
+            $cssHexColor,
+        );
+
+        foreach ($chars as $key => $char) {
+            if ($key === 0) {
+                $cssHexColor = $char;
+                continue;
+            }
+
+            $cssHexColor .= $char . $char;
+        }
+
+        return $cssHexColor;
     }
 }

@@ -49,6 +49,22 @@ final class ColorTest extends TestCase {
         );
     }
 
+    public function testFormatNormalize(): void {
+        $color = new Color(
+            '#fff',
+            '#def',
+        );
+
+        $this->assertEquals(
+            '#ffffff',
+            $color->background,
+        );
+        $this->assertEquals(
+            '#ddeeff',
+            $color->foreground,
+        );
+    }
+
     public function testBackgroundException(): void {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid background format');
