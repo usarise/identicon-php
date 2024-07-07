@@ -17,18 +17,21 @@ final class Color {
      */
     public const FORMAT = '#%02x%02x%02x';
 
-    public function __construct(
-        public readonly ?string $background = null,
-        public readonly ?string $foreground = null,
-    ) {
-        $background = $this->formatNormalize($background);
-        $foreground = $this->formatNormalize($foreground);
+    public readonly ?string $background;
+    public readonly ?string $foreground;
 
-        if ($background !== null && !$this->formatValidation($background)) {
+    public function __construct(
+        ?string $background = null,
+        ?string $foreground = null,
+    ) {
+        $this->background = $this->formatNormalize($background);
+        $this->foreground = $this->formatNormalize($foreground);
+
+        if ($this->background !== null && !$this->formatValidation($this->background)) {
             throw new InvalidArgumentException('Invalid background format');
         }
 
-        if ($foreground !== null && !$this->formatValidation($foreground)) {
+        if ($this->foreground !== null && !$this->formatValidation($this->foreground)) {
             throw new InvalidArgumentException('Invalid foreground format');
         }
     }
