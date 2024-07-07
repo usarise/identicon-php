@@ -15,7 +15,7 @@
     "require-dev": {
         "ergebnis/composer-normalize": "^2.43.0",
         "friendsofphp/php-cs-fixer": "^3.59.3",
-        "phpstan/phpstan": "^1.11.6",
+        "phpstan/phpstan": "^1.11.7",
         "phpunit/phpunit": "^10.5.25",
         "rector/rector": "^1.2.0"
     },
