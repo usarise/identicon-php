@@ -29,7 +29,7 @@ final class IdenticonTest extends IdenticonTestCase {
     public function testBadSizeMultipleOf(): void {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            sprintf(
+            \sprintf(
                 'Size must be a multiple of %s',
                 Resolution::Medium->value,
             ),
@@ -92,7 +92,7 @@ final class IdenticonTest extends IdenticonTestCase {
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            sprintf(
+            \sprintf(
                 'Size must be a multiple of %s',
                 $resolution->value,
             ),

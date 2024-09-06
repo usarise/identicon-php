@@ -24,7 +24,7 @@ final class Identicon {
 
         if (($size % $resolutionValue) !== 0) {
             throw new InvalidArgumentException(
-                sprintf(
+                \sprintf(
                     'Size must be a multiple of %d',
                     $resolutionValue,
                 ),

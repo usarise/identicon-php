@@ -64,7 +64,7 @@ final class Color {
             75.0 - $lum,
         );
 
-        return sprintf(
+        return \sprintf(
             self::FORMAT,
             ...$hsl->rgb(),
         );

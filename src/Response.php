@@ -20,7 +20,7 @@ final class Response implements \Stringable {
             PATHINFO_EXTENSION,
         ) !== $this->format) {
             throw new InvalidArgumentException(
-                sprintf(
+                \sprintf(
                     'File extension must be "%s"',
                     $this->format,
                 ),
