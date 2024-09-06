@@ -7,6 +7,9 @@ namespace Usarise\Identicon\Image\Imagick;
 use Usarise\Identicon\Exception\RuntimeException;
 use Usarise\Identicon\Image\{CanvasInterface, DrawInterface};
 
+/**
+ * @api
+ */
 final class Canvas implements CanvasInterface {
     public function __construct() {
         if (!\extension_loaded('imagick')) {

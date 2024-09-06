@@ -6,6 +6,9 @@ namespace Usarise\Identicon\Color;
 
 use Usarise\Identicon\Exception\InvalidArgumentException;
 
+/**
+ * @api
+ */
 final class Color {
     /**
      * @var string

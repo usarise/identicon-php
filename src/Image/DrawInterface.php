@@ -6,6 +6,9 @@ namespace Usarise\Identicon\Image;
 
 use Usarise\Identicon\Response;
 
+/**
+ * @api
+ */
 interface DrawInterface {
     public function pixel(int $x, int $y): void;
 

@@ -6,6 +6,9 @@ namespace Usarise\Identicon;
 
 use Usarise\Identicon\Exception\RuntimeException;
 
+/**
+ * @internal
+ */
 final class Binary {
     public function __construct(
         private readonly Resolution $resolution,

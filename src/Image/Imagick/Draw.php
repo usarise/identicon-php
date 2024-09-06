@@ -7,6 +7,9 @@ namespace Usarise\Identicon\Image\Imagick;
 use Usarise\Identicon\Image\DrawInterface;
 use Usarise\Identicon\Response;
 
+/**
+ * @api
+ */
 final class Draw implements DrawInterface {
     public function __construct(
         private readonly \Imagick $image,

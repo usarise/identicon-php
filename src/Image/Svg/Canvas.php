@@ -6,6 +6,9 @@ namespace Usarise\Identicon\Image\Svg;
 
 use Usarise\Identicon\Image\{CanvasInterface, DrawInterface};
 
+/**
+ * @api
+ */
 final class Canvas implements CanvasInterface {
     public function draw(
         int $size,

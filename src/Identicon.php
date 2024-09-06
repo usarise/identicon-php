@@ -8,6 +8,9 @@ use Usarise\Identicon\Color\Color;
 use Usarise\Identicon\Exception\InvalidArgumentException;
 use Usarise\Identicon\Image\CanvasInterface;
 
+/**
+ * @api
+ */
 final class Identicon {
     public function __construct(
         public readonly CanvasInterface $canvas,

@@ -6,6 +6,9 @@ namespace Usarise\Identicon;
 
 use Usarise\Identicon\Exception\{InvalidArgumentException, RuntimeException};
 
+/**
+ * @api
+ */
 final class Response implements \Stringable {
     public function __construct(
         public readonly string $format,

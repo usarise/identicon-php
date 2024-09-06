@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Usarise\Identicon;
 
+/**
+ * @api
+ */
 enum Resolution: int {
     case Tiny = 8;
     case Small = 10;
