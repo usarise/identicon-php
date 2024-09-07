@@ -142,22 +142,27 @@ Pixel resolution of the pattern identicon
 use Usarise\Identicon\Resolution;
 ```
 #### 6x6 (Tiny)
+![Tiny](https://github.com/usarise/identicon-php/blob/main/tests/Image/fixtures/resolution/r.tiny.imagick.png?raw=true)
 ```php
 Resolution::Tiny
 ```
 #### 8x8 (Small)
+![Small](https://github.com/usarise/identicon-php/blob/main/tests/Image/fixtures/resolution/r.small.imagick.png?raw=true)
 ```php
 Resolution::Small
 ```
 #### 10x10 (Medium)
+![Medium](https://github.com/usarise/identicon-php/blob/main/tests/Image/fixtures/resolution/r.medium.imagick.png?raw=true)
 ```php
 Resolution::Medium
 ```
 #### 12x12 (Large)
+![Large](https://github.com/usarise/identicon-php/blob/main/tests/Image/fixtures/resolution/r.large.imagick.png?raw=true)
 ```php
 Resolution::Large
 ```
 #### 14x14 (Huge)
+![Huge](https://github.com/usarise/identicon-php/blob/main/tests/Image/fixtures/resolution/r.huge.imagick.png?raw=true)
 ```php
 Resolution::Huge
 ```
