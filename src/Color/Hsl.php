@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Usarise\Identicon\Color;
 
 /**
- * @link https://github.com/dgraham/identicon/blob/v0.2.1/src/hsl.rs source.
+ * @see https://github.com/dgraham/identicon/blob/v0.2.1/src/hsl.rs Source.
  *
  * @internal
  */
