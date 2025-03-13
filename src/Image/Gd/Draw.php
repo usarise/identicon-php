@@ -14,18 +14,18 @@ final class Draw implements DrawInterface {
     public function __construct(
         private readonly \GdImage $image,
         private readonly int $foreground,
-        private readonly int $pixelSize,
+        private readonly int $bottomRight,
     ) {}
 
     public function pixel(int $x, int $y): void {
-        $pixelSize = $this->pixelSize;
+        $bottomRight = $this->bottomRight;
 
         imagefilledrectangle(
             $this->image,
             $x,
             $y,
-            $x + $pixelSize,
-            $y + $pixelSize,
+            $x + $bottomRight,
+            $y + $bottomRight,
             $this->foreground,
         );
     }

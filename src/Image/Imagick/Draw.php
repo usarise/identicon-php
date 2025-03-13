@@ -14,17 +14,17 @@ final class Draw implements DrawInterface {
     public function __construct(
         private readonly \Imagick $image,
         private readonly \ImagickDraw $pixels,
-        private readonly int $pixelSize,
+        private readonly int $bottomRight,
     ) {}
 
     public function pixel(int $x, int $y): void {
-        $pixelSize = $this->pixelSize;
+        $bottomRight = $this->bottomRight;
 
         $this->pixels->rectangle(
             $x,
             $y,
-            $x + $pixelSize,
-            $y + $pixelSize,
+            $x + $bottomRight,
+            $y + $bottomRight,
         );
     }
 
