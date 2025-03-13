@@ -22,7 +22,6 @@ final class Canvas implements CanvasInterface {
 
     /**
      * @param int<1, max> $size
-     * @param int<1, max> $pixelSize
      */
     public function draw(
         int $size,
