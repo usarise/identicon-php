@@ -1,7 +1,7 @@
 # PHP Identicon Generator
 
-[![PHP Version](https://img.shields.io/packagist/dependency-v/usarise/identicon/php.svg?colorB=%238892BF&style=flat-square&logo=php&logoColor=fff)](https://php.net)
 [![Latest Version](https://img.shields.io/github/v/release/usarise/identicon-php.svg?style=flat-square&logo=semver)](https://github.com/usarise/identicon-php/releases)
+[![PHP Version](https://img.shields.io/packagist/dependency-v/usarise/identicon/php.svg?colorB=%238892BF&style=flat-square&logo=php&logoColor=fff)](https://php.net)
 [![License](https://img.shields.io/github/license/usarise/identicon-php?style=flat-square&colorB=darkcyan&logo=unlicense&logoColor=fff)](LICENSE)
 [![Total Downloads](https://img.shields.io/packagist/dt/usarise/identicon.svg?style=flat-square&logo=packagist&logoColor=fff)](https://packagist.org/packages/usarise/identicon)
 [![GitHub CI](https://img.shields.io/github/actions/workflow/status/usarise/identicon-php/ci.yml?style=flat-square&logo=github&label=GitHub%20CI)](https://github.com/usarise/identicon-php/actions/workflows/ci.yml)
