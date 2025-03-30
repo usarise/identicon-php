@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Usarise\IdenticonTests\Color;
 
 use PHPUnit\Framework\TestCase;
+use Usarise\Identicon\{Binary, Resolution};
 use Usarise\Identicon\Color\Color;
 use Usarise\Identicon\Exception\InvalidArgumentException;
-use Usarise\Identicon\{Binary, Resolution};
 
 final class ColorTest extends TestCase {
     public function testDefaultBackground(): void {

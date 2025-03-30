@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Usarise\IdenticonTests\Image;
 
 use PHPUnit\Framework\TestCase;
-use Usarise\Identicon\Image\Imagick\Canvas as ImagickCanvas;
 use Usarise\Identicon\{Identicon, Resolution};
+use Usarise\Identicon\Image\Imagick\Canvas as ImagickCanvas;
 
 final class ImagickCanvasTest extends TestCase {
     /**
