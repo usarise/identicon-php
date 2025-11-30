@@ -6,7 +6,7 @@ namespace Usarise\Identicon\Image\Gd;
 
 use Usarise\Identicon\Color\Color;
 use Usarise\Identicon\Exception\RuntimeException;
-use Usarise\Identicon\Image\{CanvasInterface, DrawInterface};
+use Usarise\Identicon\Image\CanvasInterface;
 
 /**
  * @api
@@ -28,7 +28,7 @@ final class Canvas implements CanvasInterface {
         int $pixelSize,
         string $background,
         string $foreground,
-    ): DrawInterface {
+    ): Draw {
         $image = imagecreate(
             width: $size,
             height: $size,

@@ -9,8 +9,12 @@ namespace Usarise\Identicon;
  */
 enum Resolution: int {
     case Tiny = 8;
+
     case Small = 10;
+
     case Medium = 12;
+
     case Large = 14;
+
     case Huge = 16;
 }

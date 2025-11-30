@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Usarise\Identicon\Image\Imagick;
 
 use Usarise\Identicon\Exception\RuntimeException;
-use Usarise\Identicon\Image\{CanvasInterface, DrawInterface};
+use Usarise\Identicon\Image\CanvasInterface;
 
 /**
  * @api
@@ -24,7 +24,7 @@ final class Canvas implements CanvasInterface {
         int $pixelSize,
         string $background,
         string $foreground,
-    ): DrawInterface {
+    ): Draw {
         return new Draw(
             image: $this->image(
                 $size,

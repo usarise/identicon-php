@@ -21,6 +21,7 @@ final class Color {
     public const FORMAT = '#%02x%02x%02x';
 
     public readonly ?string $background;
+
     public readonly ?string $foreground;
 
     public function __construct(
