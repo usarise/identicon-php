@@ -15,13 +15,15 @@
     "require-dev": {
         "ergebnis/composer-normalize": "^2.48.2",
         "friendsofphp/php-cs-fixer": "^3.91.0",
+        "jcupitt/vips": "^2.5.0",
         "phpstan/phpstan": "^2.1.32",
         "phpunit/phpunit": "^10.5.58",
         "rector/rector": "^2.2.9"
     },
     "suggest": {
         "ext-gd": "to use the GD driver",
-        "ext-imagick": "to use the Imagick driver"
+        "ext-imagick": "to use the Imagick driver",
+        "jcupitt/vips": "to use the libvips driver"
     },
     "autoload": {
         "psr-4": {

@@ -90,7 +90,11 @@ jobs:
           extensions: imagick
           tools: composer:v2
           coverage: none
+      - name: Install libvips
+        run: sudo apt-get install --no-install-recommends libvips
       - uses: ramsey/composer-install@v3
         with:
           composer-options: --prefer-dist --optimize-autoloader --ansi
       - run: composer test
+        env:
+          VIPS_LIB_PATH: "1"
