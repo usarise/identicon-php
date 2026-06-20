@@ -1,6 +1,15 @@
 parameters:
 	tmpDir: var/cache/phpstan
-	level: 7
+	level: 9
 	paths:
 		- src
 		- tests
+	ignoreErrors:
+		-
+			path: src/Image/Gd/Canvas.php
+			rawMessage: 'Only iterables can be unpacked, list<int|null>|null given in argument #2.'
+			identifier: argument.unpackNonIterable
+		-
+			path: src/Image/Vips/Canvas.php
+			rawMessage: 'Parameter #2 $foreground of class Usarise\Identicon\Image\Vips\Draw constructor expects array<int<0, 2>, int<0, 255>>, array{int|null, int|null, int|null}|null given.'
+			identifier: argument.type
