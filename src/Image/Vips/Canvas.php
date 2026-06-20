@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Usarise\Identicon\Image\Vips;
 
-use Jcupitt\Vips\{BandFormat, Extend, Image, Interpretation};
+use Jcupitt\Vips\{BandFormat, Extend, FFI, Image, Interpretation};
 use Usarise\Identicon\Color\Color;
 use Usarise\Identicon\Exception\RuntimeException;
 use Usarise\Identicon\Image\CanvasInterface;
@@ -13,11 +13,15 @@ use Usarise\Identicon\Image\CanvasInterface;
  * @api
  */
 final class Canvas implements CanvasInterface {
-    public function __construct() {
+    public function __construct(?string $libvipsPath = null) {
         if (!class_exists(Image::class)) {
             throw new RuntimeException(
                 'The "jcupitt/vips" binding for libvips is not install',
             );
+        }
+
+        if ($libvipsPath !== null) {
+            FFI::addLibraryPath($libvipsPath);
         }
     }
 

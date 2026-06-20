@@ -129,6 +129,11 @@ new ImagickCanvas()
 ```php
 new VipsCanvas()
 ```
+Sample use specify path to libvips:
+```php
+new VipsCanvas(libvipsPath: 'C:/vips-dev-8.18/bin')
+```
+> Recommended for Windows
 #### SVG
 ```php
 new SvgCanvas()

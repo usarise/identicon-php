@@ -15,6 +15,8 @@ final class VipsCanvasTest extends TestCase {
      */
     private const IMAGE_SIZE = 120;
 
+    private ?string $libvipsPath = null;
+
     protected function setUp(): void {
         $vipsLibPath = getenv('VIPS_LIB_PATH');
 
@@ -25,13 +27,13 @@ final class VipsCanvasTest extends TestCase {
         }
 
         if ($vipsLibPath && file_exists($vipsLibPath)) {
-            Vips\FFI::addLibraryPath($vipsLibPath);
+            $this->libvipsPath = $vipsLibPath;
         }
     }
 
     public function testImageDriverLoad(): void {
         $identicon = new Identicon(
-            new VipsCanvas(),
+            new VipsCanvas($this->libvipsPath),
             self::IMAGE_SIZE,
         );
 
@@ -45,7 +47,7 @@ final class VipsCanvasTest extends TestCase {
         $finfo = new \finfo(FILEINFO_MIME);
 
         $identicon = new Identicon(
-            new VipsCanvas(),
+            new VipsCanvas($this->libvipsPath),
             self::IMAGE_SIZE,
         );
 
@@ -83,7 +85,7 @@ final class VipsCanvasTest extends TestCase {
 
     public function testImageDefault(): void {
         $identicon = new Identicon(
-            new VipsCanvas(),
+            new VipsCanvas($this->libvipsPath),
             self::IMAGE_SIZE,
         );
 
@@ -95,7 +97,7 @@ final class VipsCanvasTest extends TestCase {
 
     public function testImageBackground(): void {
         $identicon = new Identicon(
-            new VipsCanvas(),
+            new VipsCanvas($this->libvipsPath),
             self::IMAGE_SIZE,
         );
 
@@ -110,7 +112,7 @@ final class VipsCanvasTest extends TestCase {
 
     public function testImageForeground(): void {
         $identicon = new Identicon(
-            new VipsCanvas(),
+            new VipsCanvas($this->libvipsPath),
             self::IMAGE_SIZE,
         );
 
@@ -126,7 +128,7 @@ final class VipsCanvasTest extends TestCase {
 
     public function testImageBackgroundForeground(): void {
         $identicon = new Identicon(
-            new VipsCanvas(),
+            new VipsCanvas($this->libvipsPath),
             self::IMAGE_SIZE,
         );
 
@@ -142,7 +144,7 @@ final class VipsCanvasTest extends TestCase {
 
     public function testImageResolutionTiny(): void {
         $identicon = new Identicon(
-            canvas: new VipsCanvas(),
+            canvas: new VipsCanvas($this->libvipsPath),
             size: self::IMAGE_SIZE,
             resolution: Resolution::Tiny,
         );
@@ -155,7 +157,7 @@ final class VipsCanvasTest extends TestCase {
 
     public function testImageResolutionSmall(): void {
         $identicon = new Identicon(
-            canvas: new VipsCanvas(),
+            canvas: new VipsCanvas($this->libvipsPath),
             size: self::IMAGE_SIZE,
             resolution: Resolution::Small,
         );
@@ -168,7 +170,7 @@ final class VipsCanvasTest extends TestCase {
 
     public function testImageResolutionMedium(): void {
         $identicon = new Identicon(
-            canvas: new VipsCanvas(),
+            canvas: new VipsCanvas($this->libvipsPath),
             size: self::IMAGE_SIZE,
             resolution: Resolution::Medium,
         );
@@ -181,7 +183,7 @@ final class VipsCanvasTest extends TestCase {
 
     public function testImageResolutionLarge(): void {
         $identicon = new Identicon(
-            canvas: new VipsCanvas(),
+            canvas: new VipsCanvas($this->libvipsPath),
             size: 126,
             resolution: Resolution::Large,
         );
@@ -194,7 +196,7 @@ final class VipsCanvasTest extends TestCase {
 
     public function testImageResolutionHuge(): void {
         $identicon = new Identicon(
-            canvas: new VipsCanvas(),
+            canvas: new VipsCanvas($this->libvipsPath),
             size: 128,
             resolution: Resolution::Huge,
         );
