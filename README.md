@@ -114,15 +114,20 @@ Implementations `Usarise\Identicon\Image\CanvasInterface` from the box
 ```php
 use Usarise\Identicon\Image\Gd\Canvas as GdCanvas;
 use Usarise\Identicon\Image\Imagick\Canvas as ImagickCanvas;
+use Usarise\Identicon\Image\Vips\Canvas as VipsCanvas;
 use Usarise\Identicon\Image\Svg\Canvas as SvgCanvas;
 ```
-#### Gd extension (GD Library)
+#### Gd extension ([libgd](https://github.com/libgd/libgd))
 ```php
 new GdCanvas()
 ```
-#### Imagick extension (ImageMagick)
+#### [Imagick](https://github.com/Imagick/imagick) extension ([ImageMagick](https://github.com/ImageMagick/ImageMagick))
 ```php
 new ImagickCanvas()
+```
+#### [jcupitt/vips](https://github.com/libvips/php-vips) ([libvips](https://github.com/libvips/libvips))
+```php
+new VipsCanvas()
 ```
 #### SVG
 ```php
