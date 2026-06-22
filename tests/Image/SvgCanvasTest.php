@@ -78,6 +78,19 @@ final class SvgCanvasTest extends TestCase {
         );
     }
 
+    public function testImageSizeNonStrict(): void {
+        $identicon = new Identicon(
+            canvas: new SvgCanvas(),
+            size: 126,
+            sizeNonStrict: true,
+        );
+
+        $this->assertEquals(
+            file_get_contents(__DIR__ . '/fixtures/sizeNonStrict/test.svg'),
+            (string) $identicon->generate('test'),
+        );
+    }
+
     public function testImageRectsReset(): void {
         $identicon = new Identicon(
             new SvgCanvas(),

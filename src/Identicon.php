@@ -16,6 +16,7 @@ final class Identicon {
         public readonly CanvasInterface $canvas,
         public readonly int $size,
         public readonly Resolution $resolution = Resolution::Medium,
+        public readonly bool $sizeNonStrict = false,
     ) {
         if ($size <= 0) {
             throw new InvalidArgumentException(
@@ -23,15 +24,22 @@ final class Identicon {
             );
         }
 
-        $resolutionValue = $this->resolution->value;
+        if (!$sizeNonStrict) {
+            $resolutionValue = $this->resolution->value;
 
-        if (($size % $resolutionValue) !== 0) {
-            throw new InvalidArgumentException(
-                \sprintf(
-                    'Size must be a multiple of %d',
-                    $resolutionValue,
-                ),
-            );
+            if (($size % $resolutionValue) !== 0) {
+                $binary = new Binary(
+                    $this->resolution,
+                );
+
+                throw new InvalidArgumentException(
+                    \sprintf(
+                        'Size must be a multiple of %d. The closest acceptable size %d',
+                        $resolutionValue,
+                        $binary->getMultipleSize($size),
+                    ),
+                );
+            }
         }
     }
 
@@ -53,8 +61,19 @@ final class Identicon {
             $binary->getBinStr($bytes),
         );
 
+        $padding = 0;
         $size = $this->size;
-        $pixelSize = (int) floor($size / $this->resolution->value);
+
+        $multipleSize = $this->sizeNonStrict ? $binary->getMultipleSize($size) : $size;
+        $pixelSize = (int) floor($multipleSize / $this->resolution->value);
+
+        if ($this->sizeNonStrict) {
+            $padding = $multipleSize - $size;
+
+            if ($padding > 0) {
+                $padding = (int) ceil($padding / 2);
+            }
+        }
 
         $draw = $this->canvas->draw(
             $size,
@@ -63,8 +82,8 @@ final class Identicon {
             $color->foreground ?? $color->generate($bytes),
         );
 
-        foreach (range(0, $size, $pixelSize) as $x) {
-            foreach (range(0, $size, $pixelSize) as $y) {
+        foreach (range(0, $multipleSize, $pixelSize) as $x) {
+            foreach (range(0, $multipleSize, $pixelSize) as $y) {
                 $xBlock = (int) floor($x / $pixelSize);
                 $yBlock = (int) floor($y / $pixelSize);
 
@@ -76,6 +95,15 @@ final class Identicon {
                 }
 
                 if ($pixels[$xBlock][$yBlock] === 1) {
+                    if ($padding > 0) {
+                        $draw->pixel(
+                            x: $x - $padding,
+                            y: $y - $padding,
+                        );
+
+                        continue;
+                    }
+
                     $draw->pixel($x, $y);
                 }
             }

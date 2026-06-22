@@ -100,6 +100,24 @@ final class BinaryTest extends TestCase {
         );
     }
 
+    public function testMultipleSize(): void {
+        $binary = new Binary(Resolution::Medium);
+
+        $this->assertEquals(
+            132,
+            $binary->getMultipleSize(121),
+        );
+    }
+
+    public function testMultipleSizeNoChange(): void {
+        $binary = new Binary(Resolution::Medium);
+
+        $this->assertEquals(
+            120,
+            $binary->getMultipleSize(120),
+        );
+    }
+
     public function testPixelsDefault(): void {
         $binary = new Binary(Resolution::Medium);
 

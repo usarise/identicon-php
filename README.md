@@ -107,6 +107,7 @@ $identicon = new Identicon(
     image: new SvgCanvas(), // implementation Usarise\Identicon\Image\CanvasInterface
     size: 420, // 420x420 pixels
     resolution: Resolution::Medium, // Resolution 10x10 (Default)
+    sizeNonStrict: false, // size must be a multiple of the resolution (Default)
 );
 ```
 ### Image Canvas
@@ -141,7 +142,7 @@ new SvgCanvas()
 ### Size
 Output image height and width
 
-*Must be a positive multiple of the resolution*
+If `sizeNonStrict` = `false`: must be a positive multiple of the resolution
 
 **Example**: 120 for resolution `Resolution::Medium`
 and
@@ -176,6 +177,12 @@ Resolution::Large
 ```php
 Resolution::Huge
 ```
+### Size non strict
+Allows you to use any size, adjusting the drawing to it
+
+**Example**: size `126` for resolution `Resolution::Medium`
+
+![sizeNonStrict](https://github.com/usarise/identicon-php/blob/main/tests/Image/fixtures/sizeNonStrict/test.imagick.png?raw=true)
 ### Generate
 #### String
 Username, id, email, ip, etc

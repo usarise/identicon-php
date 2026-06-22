@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Usarise\IdenticonTests;
 
+use Usarise\Identicon\{Binary, Identicon, Resolution};
 use Usarise\Identicon\Exception\InvalidArgumentException;
-use Usarise\Identicon\{Identicon, Resolution};
 use Usarise\IdenticonTests\Image\Custom\Canvas as CustomCanvas;
 
 final class IdenticonTest extends IdenticonTestCase {
@@ -26,18 +26,40 @@ final class IdenticonTest extends IdenticonTestCase {
         );
     }
 
+    public function testDefaultValue(): void {
+        $identicon = new Identicon(
+            new CustomCanvas(),
+            self::IMAGE_SIZE,
+        );
+
+        $this->assertEquals(
+            12,
+            $identicon->resolution->value,
+        );
+
+        $this->assertFalse(
+            $identicon->sizeNonStrict,
+        );
+    }
+
     public function testBadSizeMultipleOf(): void {
+        $binary = new Binary(
+            Resolution::Medium,
+        );
+
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
             \sprintf(
-                'Size must be a multiple of %s',
+                'Size must be a multiple of %d. The closest acceptable size %d',
                 Resolution::Medium->value,
+                $binary->getMultipleSize(126),
             ),
         );
 
         new Identicon(
             canvas: new CustomCanvas(),
-            size: 121,
+            size: 126,
+            sizeNonStrict: false,
         );
     }
 
@@ -87,14 +109,36 @@ final class IdenticonTest extends IdenticonTestCase {
         );
     }
 
+    public function testSizeNonStrict(): void {
+        $identicon = new Identicon(
+            canvas: new CustomCanvas(),
+            size: 126,
+            sizeNonStrict: true,
+        );
+
+        $this->assertEquals(
+            126,
+            $identicon->size,
+        );
+
+        $this->assertTrue(
+            $identicon->sizeNonStrict,
+        );
+    }
+
     public function testBadSizeResolution(): void {
         $resolution = Resolution::Tiny;
+
+        $binary = new Binary(
+            $resolution,
+        );
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
             \sprintf(
-                'Size must be a multiple of %s',
+                'Size must be a multiple of %d. The closest acceptable size %d',
                 $resolution->value,
+                $binary->getMultipleSize(self::IMAGE_SIZE),
             ),
         );
 
@@ -102,6 +146,7 @@ final class IdenticonTest extends IdenticonTestCase {
             canvas: new CustomCanvas(),
             size: self::IMAGE_SIZE,
             resolution: $resolution,
+            sizeNonStrict: false,
         );
     }
 
@@ -120,6 +165,7 @@ final class IdenticonTest extends IdenticonTestCase {
             canvas: new CustomCanvas(),
             size: 128,
             resolution: Resolution::Huge,
+            sizeNonStrict: false,
         );
 
         $this->assertEquals(

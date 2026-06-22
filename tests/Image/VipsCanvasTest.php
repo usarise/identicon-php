@@ -95,6 +95,19 @@ final class VipsCanvasTest extends TestCase {
         );
     }
 
+    public function testImageSizeNonStrict(): void {
+        $identicon = new Identicon(
+            canvas: new VipsCanvas($this->libvipsPath),
+            size: 126,
+            sizeNonStrict: true,
+        );
+
+        $this->assertEquals(
+            file_get_contents(__DIR__ . '/fixtures/sizeNonStrict/test.vips.png'),
+            (string) $identicon->generate('test'),
+        );
+    }
+
     public function testImageBackground(): void {
         $identicon = new Identicon(
             new VipsCanvas($this->libvipsPath),

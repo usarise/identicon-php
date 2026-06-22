@@ -89,4 +89,14 @@ final class Binary {
             ...array_reverse($matrix),
         ];
     }
+
+    public function getMultipleSize(int $size): int {
+        $resolution = $this->resolution->value;
+
+        if (($size % $resolution) !== 0) {
+            return (intdiv($size, $resolution) + 1) * $resolution;
+        }
+
+        return $size;
+    }
 }

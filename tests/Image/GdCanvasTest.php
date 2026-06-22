@@ -86,6 +86,19 @@ final class GdCanvasTest extends TestCase {
         );
     }
 
+    public function testImageSizeNonStrict(): void {
+        $identicon = new Identicon(
+            canvas: new GdCanvas(),
+            size: 126,
+            sizeNonStrict: true,
+        );
+
+        $this->assertEquals(
+            file_get_contents(__DIR__ . '/fixtures/sizeNonStrict/test.gd.png'),
+            (string) $identicon->generate('test'),
+        );
+    }
+
     public function testImageBackground(): void {
         $identicon = new Identicon(
             new GdCanvas(),
