@@ -80,8 +80,8 @@ final class GdCanvasTest extends TestCase {
             self::IMAGE_SIZE,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/default/test.gd.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/default/test.gd.png',
             (string) $identicon->generate('test'),
         );
     }
@@ -93,8 +93,8 @@ final class GdCanvasTest extends TestCase {
             sizeNonStrict: true,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/sizeNonStrict/test.gd.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/sizeNonStrict/test.gd.png',
             (string) $identicon->generate('test'),
         );
     }
@@ -105,8 +105,8 @@ final class GdCanvasTest extends TestCase {
             self::IMAGE_SIZE,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.background.gd.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/color/test.background.gd.png',
             (string) $identicon->generate(
                 'test',
                 '#f2f1f2',
@@ -120,8 +120,8 @@ final class GdCanvasTest extends TestCase {
             self::IMAGE_SIZE,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.foreground.gd.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/color/test.foreground.gd.png',
             (string) $identicon->generate(
                 'test',
                 null,
@@ -136,8 +136,8 @@ final class GdCanvasTest extends TestCase {
             self::IMAGE_SIZE,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.background.foreground.gd.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/color/test.background.foreground.gd.png',
             (string) $identicon->generate(
                 'test',
                 '#f2f1f2',
@@ -153,8 +153,8 @@ final class GdCanvasTest extends TestCase {
             resolution: Resolution::Tiny,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.tiny.gd.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/resolution/r.tiny.gd.png',
             (string) $identicon->generate('r'),
         );
     }
@@ -166,8 +166,8 @@ final class GdCanvasTest extends TestCase {
             resolution: Resolution::Small,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.small.gd.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/resolution/r.small.gd.png',
             (string) $identicon->generate('r'),
         );
     }
@@ -179,8 +179,8 @@ final class GdCanvasTest extends TestCase {
             resolution: Resolution::Medium,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.medium.gd.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/resolution/r.medium.gd.png',
             (string) $identicon->generate('r'),
         );
     }
@@ -192,8 +192,8 @@ final class GdCanvasTest extends TestCase {
             resolution: Resolution::Large,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.large.gd.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/resolution/r.large.gd.png',
             (string) $identicon->generate('r'),
         );
     }
@@ -205,8 +205,8 @@ final class GdCanvasTest extends TestCase {
             resolution: Resolution::Huge,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.huge.gd.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/resolution/r.huge.gd.png',
             (string) $identicon->generate('r'),
         );
     }

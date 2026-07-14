@@ -72,8 +72,8 @@ final class SvgCanvasTest extends TestCase {
             self::IMAGE_SIZE,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/default/test.svg'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/default/test.svg',
             (string) $identicon->generate('test'),
         );
     }
@@ -85,8 +85,8 @@ final class SvgCanvasTest extends TestCase {
             sizeNonStrict: true,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/sizeNonStrict/test.svg'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/sizeNonStrict/test.svg',
             (string) $identicon->generate('test'),
         );
     }
@@ -100,8 +100,8 @@ final class SvgCanvasTest extends TestCase {
         // rects variable
         $identicon->generate('test');
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/default/test.svg'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/default/test.svg',
             (string) $identicon->generate('test'),
         );
     }
@@ -112,8 +112,8 @@ final class SvgCanvasTest extends TestCase {
             self::IMAGE_SIZE,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.background.svg'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/color/test.background.svg',
             (string) $identicon->generate(
                 'test',
                 '#f2f1f2',
@@ -127,8 +127,8 @@ final class SvgCanvasTest extends TestCase {
             self::IMAGE_SIZE,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.foreground.svg'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/color/test.foreground.svg',
             (string) $identicon->generate(
                 'test',
                 null,
@@ -143,8 +143,8 @@ final class SvgCanvasTest extends TestCase {
             self::IMAGE_SIZE,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.background.foreground.svg'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/color/test.background.foreground.svg',
             (string) $identicon->generate(
                 'test',
                 '#f2f1f2',
@@ -160,8 +160,8 @@ final class SvgCanvasTest extends TestCase {
             resolution: Resolution::Tiny,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.tiny.svg'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/resolution/r.tiny.svg',
             (string) $identicon->generate('r'),
         );
     }
@@ -173,8 +173,8 @@ final class SvgCanvasTest extends TestCase {
             resolution: Resolution::Small,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.small.svg'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/resolution/r.small.svg',
             (string) $identicon->generate('r'),
         );
     }
@@ -186,8 +186,8 @@ final class SvgCanvasTest extends TestCase {
             resolution: Resolution::Medium,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.medium.svg'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/resolution/r.medium.svg',
             (string) $identicon->generate('r'),
         );
     }
@@ -199,8 +199,8 @@ final class SvgCanvasTest extends TestCase {
             resolution: Resolution::Large,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.large.svg'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/resolution/r.large.svg',
             (string) $identicon->generate('r'),
         );
     }
@@ -212,8 +212,8 @@ final class SvgCanvasTest extends TestCase {
             resolution: Resolution::Huge,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.huge.svg'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/resolution/r.huge.svg',
             (string) $identicon->generate('r'),
         );
     }

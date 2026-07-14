@@ -231,7 +231,7 @@ final class IdenticonTest extends IdenticonTestCase {
             $file = self::TEMP_GENERATE,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'test response',
             file_get_contents($file),
         );

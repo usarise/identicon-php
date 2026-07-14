@@ -68,13 +68,13 @@ final class SvgTest extends TestCase {
             self::FOREGROUND,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/svg/generate.svg'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/svg/generate.svg',
             $svg->generate(),
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/svg/generate.minimize.svg'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/svg/generate.minimize.svg',
             $svg->generate(minimize: true),
         );
     }
@@ -93,13 +93,13 @@ final class SvgTest extends TestCase {
             height: 30,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/svg/generate.rect.svg'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/svg/generate.rect.svg',
             $svg->generate(),
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/svg/generate.rect.minimize.svg'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/svg/generate.rect.minimize.svg',
             $svg->generate(minimize: true),
         );
     }

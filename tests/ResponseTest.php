@@ -93,7 +93,7 @@ final class ResponseTest extends IdenticonTestCase {
             $file = self::TEMP_RESPONSE,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'test write',
             file_get_contents($file),
         );

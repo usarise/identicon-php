@@ -89,8 +89,8 @@ final class VipsCanvasTest extends TestCase {
             self::IMAGE_SIZE,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/default/test.vips.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/default/test.vips.png',
             (string) $identicon->generate('test'),
         );
     }
@@ -102,8 +102,8 @@ final class VipsCanvasTest extends TestCase {
             sizeNonStrict: true,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/sizeNonStrict/test.vips.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/sizeNonStrict/test.vips.png',
             (string) $identicon->generate('test'),
         );
     }
@@ -114,8 +114,8 @@ final class VipsCanvasTest extends TestCase {
             self::IMAGE_SIZE,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.background.vips.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/color/test.background.vips.png',
             (string) $identicon->generate(
                 'test',
                 '#f2f1f2',
@@ -129,8 +129,8 @@ final class VipsCanvasTest extends TestCase {
             self::IMAGE_SIZE,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.foreground.vips.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/color/test.foreground.vips.png',
             (string) $identicon->generate(
                 'test',
                 null,
@@ -145,8 +145,8 @@ final class VipsCanvasTest extends TestCase {
             self::IMAGE_SIZE,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/color/test.background.foreground.vips.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/color/test.background.foreground.vips.png',
             (string) $identicon->generate(
                 'test',
                 '#f2f1f2',
@@ -162,8 +162,8 @@ final class VipsCanvasTest extends TestCase {
             resolution: Resolution::Tiny,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.tiny.vips.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/resolution/r.tiny.vips.png',
             (string) $identicon->generate('r'),
         );
     }
@@ -175,8 +175,8 @@ final class VipsCanvasTest extends TestCase {
             resolution: Resolution::Small,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.small.vips.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/resolution/r.small.vips.png',
             (string) $identicon->generate('r'),
         );
     }
@@ -188,8 +188,8 @@ final class VipsCanvasTest extends TestCase {
             resolution: Resolution::Medium,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.medium.vips.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/resolution/r.medium.vips.png',
             (string) $identicon->generate('r'),
         );
     }
@@ -201,8 +201,8 @@ final class VipsCanvasTest extends TestCase {
             resolution: Resolution::Large,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.large.vips.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/resolution/r.large.vips.png',
             (string) $identicon->generate('r'),
         );
     }
@@ -214,8 +214,8 @@ final class VipsCanvasTest extends TestCase {
             resolution: Resolution::Huge,
         );
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/fixtures/resolution/r.huge.vips.png'),
+        $this->assertStringEqualsFile(
+            __DIR__ . '/fixtures/resolution/r.huge.vips.png',
             (string) $identicon->generate('r'),
         );
     }
