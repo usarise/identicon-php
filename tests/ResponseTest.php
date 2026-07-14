@@ -94,8 +94,8 @@ final class ResponseTest extends IdenticonTestCase {
         );
 
         $this->assertEquals(
-            file_get_contents($file),
             'test write',
+            file_get_contents($file),
         );
     }
 }

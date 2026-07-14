@@ -232,8 +232,8 @@ final class IdenticonTest extends IdenticonTestCase {
         );
 
         $this->assertEquals(
-            file_get_contents($file),
             'test response',
+            file_get_contents($file),
         );
     }
 }
