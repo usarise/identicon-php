@@ -11,7 +11,7 @@ final class BinaryTest extends TestCase {
     public function testBytes(): void {
         $binary = new Binary(Resolution::Medium);
 
-        $this->assertEquals(
+        $this->assertSame(
             [
                 1 => 9,
                 2 => 143,
@@ -37,7 +37,7 @@ final class BinaryTest extends TestCase {
     public function testBinStrDefault(): void {
         $binary = new Binary(Resolution::Medium);
 
-        $this->assertEquals(
+        $this->assertSame(
             '000010011000111101101011110011010100011000100001110100110111001111001010',
             $binary->getBinStr(
                 $binary->getBytes('test'),
@@ -48,7 +48,7 @@ final class BinaryTest extends TestCase {
     public function testBinStrResolutionTiny(): void {
         $binary = new Binary(Resolution::Tiny);
 
-        $this->assertEquals(
+        $this->assertSame(
             '01001011010000111011000010101110',
             $binary->getBinStr(
                 $binary->getBytes('r'),
@@ -59,7 +59,7 @@ final class BinaryTest extends TestCase {
     public function testBinStrResolutionSmall(): void {
         $binary = new Binary(Resolution::Small);
 
-        $this->assertEquals(
+        $this->assertSame(
             '01001011010000111011000010101110111000110101011000',
             $binary->getBinStr(
                 $binary->getBytes('r'),
@@ -70,7 +70,7 @@ final class BinaryTest extends TestCase {
     public function testBinStrResolutionMedium(): void {
         $binary = new Binary(Resolution::Medium);
 
-        $this->assertEquals(
+        $this->assertSame(
             '010010110100001110110000101011101110001101010110001001001100110110010101',
             $binary->getBinStr(
                 $binary->getBytes('r'),
@@ -81,7 +81,7 @@ final class BinaryTest extends TestCase {
     public function testBinStrResolutionLarge(): void {
         $binary = new Binary(Resolution::Large);
 
-        $this->assertEquals(
+        $this->assertSame(
             '01001011010000111011000010101110111000110101011000100100110011011001010110111001000100000001100010',
             $binary->getBinStr(
                 $binary->getBytes('r'),
@@ -92,7 +92,7 @@ final class BinaryTest extends TestCase {
     public function testBinStrResolutionHuge(): void {
         $binary = new Binary(Resolution::Huge);
 
-        $this->assertEquals(
+        $this->assertSame(
             '01001011010000111011000010101110111000110101011000100100110011011001010110111001000100000001100010011011001111011100001000110001',
             $binary->getBinStr(
                 $binary->getBytes('r'),
@@ -103,7 +103,7 @@ final class BinaryTest extends TestCase {
     public function testMultipleSize(): void {
         $binary = new Binary(Resolution::Medium);
 
-        $this->assertEquals(
+        $this->assertSame(
             132,
             $binary->getMultipleSize(121),
         );
@@ -112,7 +112,7 @@ final class BinaryTest extends TestCase {
     public function testMultipleSizeNoChange(): void {
         $binary = new Binary(Resolution::Medium);
 
-        $this->assertEquals(
+        $this->assertSame(
             120,
             $binary->getMultipleSize(120),
         );
@@ -121,7 +121,7 @@ final class BinaryTest extends TestCase {
     public function testPixelsDefault(): void {
         $binary = new Binary(Resolution::Medium);
 
-        $this->assertEquals(
+        $this->assertSame(
             [
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0],
@@ -147,7 +147,7 @@ final class BinaryTest extends TestCase {
     public function testPixelsResolutionTiny(): void {
         $binary = new Binary(Resolution::Tiny);
 
-        $this->assertEquals(
+        $this->assertSame(
             [
                 [0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 1, 0, 0, 0, 0, 1, 0],
@@ -169,7 +169,7 @@ final class BinaryTest extends TestCase {
     public function testPixelsResolutionSmall(): void {
         $binary = new Binary(Resolution::Small);
 
-        $this->assertEquals(
+        $this->assertSame(
             [
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 1, 1, 1, 0, 1, 0],
@@ -193,7 +193,7 @@ final class BinaryTest extends TestCase {
     public function testPixelsResolutionMedium(): void {
         $binary = new Binary(Resolution::Medium);
 
-        $this->assertEquals(
+        $this->assertSame(
             [
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0],
@@ -219,7 +219,7 @@ final class BinaryTest extends TestCase {
     public function testPixelsResolutionLarge(): void {
         $binary = new Binary(Resolution::Large);
 
-        $this->assertEquals(
+        $this->assertSame(
             [
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0],
@@ -247,7 +247,7 @@ final class BinaryTest extends TestCase {
     public function testPixelsResolutionHuge(): void {
         $binary = new Binary(Resolution::Huge);
 
-        $this->assertEquals(
+        $this->assertSame(
             [
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0],

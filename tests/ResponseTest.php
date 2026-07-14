@@ -15,22 +15,22 @@ final class ResponseTest extends IdenticonTestCase {
             'output',
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'format',
             $response->format,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'mimeType',
             $response->mimeType,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'output',
             $response->output,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'output',
             (string) $response,
         );

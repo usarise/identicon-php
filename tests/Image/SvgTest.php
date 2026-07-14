@@ -29,15 +29,15 @@ final class SvgTest extends TestCase {
             self::BACKGROUND,
             self::FOREGROUND,
         );
-        $this->assertEquals(
+        $this->assertSame(
             420,
             $svg->size,
         );
-        $this->assertEquals(
+        $this->assertSame(
             '#F0F0F0',
             $svg->background,
         );
-        $this->assertEquals(
+        $this->assertSame(
             '#55c878',
             $svg->foreground,
         );
@@ -47,15 +47,15 @@ final class SvgTest extends TestCase {
             '#f2f1f2',
             '#84c7b5',
         );
-        $this->assertEquals(
+        $this->assertSame(
             120,
             $svg->size,
         );
-        $this->assertEquals(
+        $this->assertSame(
             '#f2f1f2',
             $svg->background,
         );
-        $this->assertEquals(
+        $this->assertSame(
             '#84c7b5',
             $svg->foreground,
         );

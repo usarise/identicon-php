@@ -44,24 +44,24 @@ final class GdCanvasTest extends TestCase {
 
         $generate = $identicon->generate('test');
 
-        $this->assertEquals(
+        $this->assertSame(
             'png',
             $generate->format,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'image/png',
             $generate->mimeType,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'image/png; charset=binary',
             $finfo->buffer(
                 $generate->output,
             ),
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'image/png; charset=binary',
             $finfo->buffer(
                 (string) $generate,

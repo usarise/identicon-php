@@ -11,7 +11,7 @@ final class HslTest extends TestCase {
     public function testHslBlack(): void {
         $black = new Hsl(0.0, 0.0, 0.0);
 
-        $this->assertEquals(
+        $this->assertSame(
             [0, 0, 0],
             $black->rgb(),
         );
@@ -20,7 +20,7 @@ final class HslTest extends TestCase {
     public function testHslWhite(): void {
         $white = new Hsl(0.0, 0.0, 100.0);
 
-        $this->assertEquals(
+        $this->assertSame(
             [255, 255, 255],
             $white->rgb(),
         );
@@ -29,7 +29,7 @@ final class HslTest extends TestCase {
     public function testHslRed(): void {
         $red = new Hsl(0.0, 100.0, 50.0);
 
-        $this->assertEquals(
+        $this->assertSame(
             [255, 0, 0],
             $red->rgb(),
         );
@@ -38,7 +38,7 @@ final class HslTest extends TestCase {
     public function testHslGreen(): void {
         $green = new Hsl(120.0, 100.0, 50.0);
 
-        $this->assertEquals(
+        $this->assertSame(
             [0, 255, 0],
             $green->rgb(),
         );
@@ -47,7 +47,7 @@ final class HslTest extends TestCase {
     public function testHslBlue(): void {
         $blue = new Hsl(240.0, 100.0, 50.0);
 
-        $this->assertEquals(
+        $this->assertSame(
             [0, 0, 255],
             $blue->rgb(),
         );

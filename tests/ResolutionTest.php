@@ -9,27 +9,27 @@ use Usarise\Identicon\Resolution;
 
 final class ResolutionTest extends TestCase {
     public function testResolutionValue(): void {
-        $this->assertEquals(
+        $this->assertSame(
             8,
             Resolution::Tiny->value,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             10,
             Resolution::Small->value,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             12,
             Resolution::Medium->value,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             14,
             Resolution::Large->value,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             16,
             Resolution::Huge->value,
         );

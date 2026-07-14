@@ -36,24 +36,24 @@ final class SvgCanvasTest extends TestCase {
 
         $generate = $identicon->generate('test');
 
-        $this->assertEquals(
+        $this->assertSame(
             'svg',
             $generate->format,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'image/svg+xml',
             $generate->mimeType,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'image/svg+xml; charset=us-ascii',
             $finfo->buffer(
                 $generate->output,
             ),
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'image/svg+xml; charset=us-ascii',
             $finfo->buffer(
                 (string) $generate,

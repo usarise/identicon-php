@@ -32,7 +32,7 @@ final class IdenticonTest extends IdenticonTestCase {
             self::IMAGE_SIZE,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             12,
             $identicon->resolution->value,
         );
@@ -93,7 +93,7 @@ final class IdenticonTest extends IdenticonTestCase {
             self::IMAGE_SIZE,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             self::IMAGE_SIZE,
             $identicon->size,
         );
@@ -103,7 +103,7 @@ final class IdenticonTest extends IdenticonTestCase {
             size: 120,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             120,
             $identicon->size,
         );
@@ -116,7 +116,7 @@ final class IdenticonTest extends IdenticonTestCase {
             sizeNonStrict: true,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             126,
             $identicon->size,
         );
@@ -156,7 +156,7 @@ final class IdenticonTest extends IdenticonTestCase {
             self::IMAGE_SIZE,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             12,
             $identicon->resolution->value,
         );
@@ -168,7 +168,7 @@ final class IdenticonTest extends IdenticonTestCase {
             sizeNonStrict: false,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             16,
             $identicon->resolution->value,
         );
@@ -212,17 +212,17 @@ final class IdenticonTest extends IdenticonTestCase {
 
         $generate = $identicon->generate('test');
 
-        $this->assertEquals(
+        $this->assertSame(
             'tmp',
             $generate->format,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'test response',
             $generate->output,
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'test response',
             (string) $generate,
         );

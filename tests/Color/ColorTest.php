@@ -11,14 +11,14 @@ use Usarise\Identicon\Exception\InvalidArgumentException;
 
 final class ColorTest extends TestCase {
     public function testDefaultBackground(): void {
-        $this->assertEquals(
+        $this->assertSame(
             '#F0F0F0',
             Color::DEFAULT_BACKGROUND,
         );
     }
 
     public function testColorFormat(): void {
-        $this->assertEquals(
+        $this->assertSame(
             '#%02x%02x%02x',
             Color::FORMAT,
         );
@@ -39,11 +39,11 @@ final class ColorTest extends TestCase {
             '#55c878',
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             '#f2f1f2',
             $color->background,
         );
-        $this->assertEquals(
+        $this->assertSame(
             '#55c878',
             $color->foreground,
         );
@@ -55,11 +55,11 @@ final class ColorTest extends TestCase {
             '#def',
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             '#ffffff',
             $color->background,
         );
-        $this->assertEquals(
+        $this->assertSame(
             '#ddeeff',
             $color->foreground,
         );
@@ -93,7 +93,7 @@ final class ColorTest extends TestCase {
     public function testGenerate(): void {
         $color = new Color();
 
-        $this->assertEquals(
+        $this->assertSame(
             '#55c878',
             $color->generate(
                 (new Binary(
