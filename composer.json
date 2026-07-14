@@ -20,7 +20,7 @@
         "jcupitt/vips": "^2.6.1",
         "phpstan/phpstan": "^2.2.5",
         "phpunit/phpunit": "^10.5.64",
-        "rector/rector": "^2.5.5"
+        "rector/rector": "^2.5.7"
     },
     "suggest": {
         "ext-gd": "to use the GD driver",
