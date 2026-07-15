@@ -16,7 +16,7 @@
         "ext-gd": "*",
         "ext-imagick": "*",
         "ergebnis/composer-normalize": "^2.52.0",
-        "friendsofphp/php-cs-fixer": "^3.95.13",
+        "friendsofphp/php-cs-fixer": "^3.95.15",
         "jcupitt/vips": "^2.6.1",
         "phpstan/phpstan": "^2.2.5",
         "phpunit/phpunit": "^10.5.64",
