@@ -16,11 +16,11 @@
         "ext-gd": "*",
         "ext-imagick": "*",
         "ergebnis/composer-normalize": "^2.52.0",
-        "friendsofphp/php-cs-fixer": "^3.95.17",
+        "friendsofphp/php-cs-fixer": "^3.95.18",
         "jcupitt/vips": "^2.6.1",
-        "phpstan/phpstan": "^2.2.6",
+        "phpstan/phpstan": "^2.2.8",
         "phpunit/phpunit": "^10.5.64",
-        "rector/rector": "^2.5.8"
+        "rector/rector": "^2.6.2"
     },
     "suggest": {
         "ext-gd": "to use the GD driver",
