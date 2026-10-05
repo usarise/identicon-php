@@ -15,12 +15,12 @@
     "require-dev": {
         "ext-gd": "*",
         "ext-imagick": "*",
-        "ergebnis/composer-normalize": "^2.52.0",
-        "friendsofphp/php-cs-fixer": "^3.95.24",
+        "ergebnis/composer-normalize": "^2.54.0",
+        "friendsofphp/php-cs-fixer": "^3.95.27",
         "jcupitt/vips": "^2.6.1",
-        "phpstan/phpstan": "^2.2.12",
-        "phpunit/phpunit": "^10.5.64",
-        "rector/rector": "^2.6.5"
+        "phpstan/phpstan": "^2.2.17",
+        "phpunit/phpunit": "^10.5.66",
+        "rector/rector": "^2.6.7"
     },
     "suggest": {
         "ext-gd": "to use the GD driver",
