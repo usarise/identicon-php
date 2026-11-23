@@ -17,6 +17,7 @@ final class VipsCanvasTest extends TestCase {
 
     private ?string $libvipsPath = null;
 
+    #[\Override]
     protected function setUp(): void {
         $vipsLibPath = getenv('VIPS_LIB_PATH');
 

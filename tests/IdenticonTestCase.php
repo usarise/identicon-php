@@ -22,12 +22,14 @@ abstract class IdenticonTestCase extends TestCase {
      */
     protected const TEMP_RESPONSE = self::TEMP_DIR . '/response.tmp';
 
+    #[\Override]
     protected function setUp(): void {
         if (!is_dir($tmp = self::TEMP_DIR)) {
             mkdir($tmp, 0o777, true);
         }
     }
 
+    #[\Override]
     protected function tearDown(): void {
         if (is_file($file = self::TEMP_GENERATE)) {
             unlink($file);

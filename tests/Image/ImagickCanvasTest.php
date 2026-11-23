@@ -14,6 +14,7 @@ final class ImagickCanvasTest extends TestCase {
      */
     private const IMAGE_SIZE = 120;
 
+    #[\Override]
     protected function setUp(): void {
         if (!\extension_loaded('imagick')) {
             $this->markTestSkipped(
