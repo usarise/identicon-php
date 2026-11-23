@@ -142,7 +142,7 @@ new SvgCanvas()
 ### Size
 Output image height and width
 
-If `sizeNonStrict` = `false`: must be a positive multiple of the resolution
+If `sizeNonStrict: false` (Default): must be a positive multiple of the resolution
 
 **Example**: 120 for resolution `Resolution::Medium`
 and
@@ -155,27 +155,47 @@ use Usarise\Identicon\Resolution;
 #### 6x6 (Tiny)
 ![Tiny](https://github.com/usarise/identicon-php/blob/main/tests/Image/fixtures/resolution/r.tiny.imagick.png?raw=true)
 ```php
-Resolution::Tiny
+$identicon = new Identicon(
+    image: new SvgCanvas(),
+    size: 120,
+    resolution: Resolution::Tiny,
+);
 ```
 #### 8x8 (Small)
 ![Small](https://github.com/usarise/identicon-php/blob/main/tests/Image/fixtures/resolution/r.small.imagick.png?raw=true)
 ```php
-Resolution::Small
+$identicon = new Identicon(
+    image: new SvgCanvas(),
+    size: 120,
+    resolution: Resolution::Small,
+);
 ```
 #### 10x10 (Medium)
 ![Medium](https://github.com/usarise/identicon-php/blob/main/tests/Image/fixtures/resolution/r.medium.imagick.png?raw=true)
 ```php
-Resolution::Medium
+$identicon = new Identicon(
+    image: new SvgCanvas(),
+    size: 120,
+    resolution: Resolution::Medium,
+);
 ```
 #### 12x12 (Large)
 ![Large](https://github.com/usarise/identicon-php/blob/main/tests/Image/fixtures/resolution/r.large.imagick.png?raw=true)
 ```php
-Resolution::Large
+$identicon = new Identicon(
+    image: new SvgCanvas(),
+    size: 126,
+    resolution: Resolution::Large,
+);
 ```
 #### 14x14 (Huge)
 ![Huge](https://github.com/usarise/identicon-php/blob/main/tests/Image/fixtures/resolution/r.huge.imagick.png?raw=true)
 ```php
-Resolution::Huge
+$identicon = new Identicon(
+    image: new SvgCanvas(),
+    size: 128,
+    resolution: Resolution::Huge,
+);
 ```
 ### Size non strict
 Allows you to use any size, adjusting the drawing to it
@@ -183,6 +203,14 @@ Allows you to use any size, adjusting the drawing to it
 **Example**: size `126` for resolution `Resolution::Medium`
 
 ![sizeNonStrict](https://github.com/usarise/identicon-php/blob/main/tests/Image/fixtures/sizeNonStrict/test.imagick.png?raw=true)
+```php
+$identicon = new Identicon(
+    canvas: new SvgCanvas(),
+    size: 126,
+    resolution: Resolution::Medium,
+    sizeNonStrict: true,
+);
+```
 ### Generate
 #### String
 Username, id, email, ip, etc
