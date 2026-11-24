@@ -98,7 +98,7 @@ final class SvgCanvasTest extends TestCase {
         );
 
         // rects variable
-        $identicon->generate('test');
+        $_ = $identicon->generate('test');
 
         $this->assertStringEqualsFile(
             __DIR__ . '/fixtures/default/test.svg',

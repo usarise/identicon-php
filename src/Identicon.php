@@ -43,6 +43,7 @@ final class Identicon {
         }
     }
 
+    #[\NoDiscard]
     public function generate(string $string, ?string $background = null, ?string $foreground = null): Response {
         $color = new Color(
             $background,

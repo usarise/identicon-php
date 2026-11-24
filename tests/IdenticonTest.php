@@ -183,7 +183,7 @@ final class IdenticonTest extends IdenticonTestCase {
             self::IMAGE_SIZE,
         );
 
-        $identicon->generate(
+        $_ = $identicon->generate(
             string: 'test',
             background: 'invalid',
         );
@@ -198,7 +198,7 @@ final class IdenticonTest extends IdenticonTestCase {
             self::IMAGE_SIZE,
         );
 
-        $identicon->generate(
+        $_ = $identicon->generate(
             string: 'test',
             foreground: 'invalid',
         );
