@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 
 return RectorConfig::configure()
@@ -13,17 +12,12 @@ return RectorConfig::configure()
         __DIR__ . '/src',
         __DIR__ . '/tests',
     ])
-    ->withSkip([
-        NewlineAfterStatementRector::class,
-    ])
     ->withPreparedSets(
         deadCode: true,
         codeQuality: true,
         codingStyle: true,
         typeDeclarations: true,
         privatization: true,
-        instanceOf: true,
-        earlyReturn: true,
         phpunitNarrowAsserts: true,
         phpunitMockToStub: true,
     )
